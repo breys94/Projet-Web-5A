@@ -1,5 +1,6 @@
 package com.breys.breysequestre.User;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -53,7 +54,10 @@ public class UserRestController {
     @CrossOrigin
     @PostMapping("/addUser")
     public ResponseEntity<UserDTO> createNewCustomer(@RequestBody UserDTO userDTORequest) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        System.out.println(userDTORequest.getRole());
+
+        String hashed = BCrypt.hashpw(userDTORequest.getPassword(), BCrypt.gensalt());
+        //if (BCrypt.checkpw(candidate, hashed))
+        userDTORequest.setPassword(hashed);
 
         User existingUser = userService.findUserByEmail(userDTORequest.getEmail());
         if (existingUser != null) {
