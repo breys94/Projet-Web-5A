@@ -1,0 +1,81 @@
+<div class="login">
+
+    <h2 class="login-header">Inscription</h2>
+
+    <form [formGroup]="inscriptionForm" class="login-container" (ngSubmit)="inscrire()">
+
+        <div class="checkbutton">
+            <label>Vous êtes moniteur :
+                <input type="checkbox" formControlName="isMonitor">
+            </label>
+        </div>
+
+        <p [ngClass]="{ 'has-error': isSubmitted && formControls.surname.errors }">
+            <input #surname type="surname" placeholder="Nom" formControlName="surname">
+        </p>
+
+        <div *ngIf="isSubmitted && formControls.surname.errors" class="help-block">
+            <div *ngIf="formControls.surname.errors.required" class="champs_requis">
+                <font color="red">Votre nom est requis</font>
+            </div>
+        </div>
+
+        <p [ngClass]="{ 'has-error': isSubmitted && formControls.surname.errors }">
+            <input #name type="surname" placeholder="Prénom" formControlName="name">
+        </p>
+
+        <div *ngIf="isSubmitted && formControls.name.errors" class="help-block">
+            <div *ngIf="formControls.name.errors.required" class="champs_requis">
+                <font color="red">Votre prénom est requis</font>
+            </div>
+        </div>
+
+        <p [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }">
+            <input #email type="email" placeholder="Email" formControlName="email">
+        </p>
+
+        <div *ngIf="isSubmitted && formControls.email.errors" class="help-block">
+            <div *ngIf="formControls.email.errors.required" class="champs_requis">
+                <font color="red">L'email est requis</font>
+            </div>
+        </div>
+
+        <p [ngClass]="{ 'has-error': isSubmitted && formControls.password.errors }">
+            <input #passwd type="password" placeholder="Mot de passe" formControlName="password">
+        </p>
+
+        <div *ngIf="isSubmitted && formControls.password.errors" class="help-block">
+            <div *ngIf="formControls.password.errors.required" class="champs_requis">
+                <font color="red">Mot de passe requis</font>
+            </div>
+        </div>
+
+        <p [ngClass]="{ 'has-error': isSubmitted && formControls.password.errors }">
+            <input #passwdconfirm type="password" placeholder="Confirmer votre mot de passe" formControlName="passwdconfirm">
+        </p>
+
+        <div *ngIf="isSubmitted && formControls.password.errors" class="help-block">
+            <div *ngIf="formControls.password.errors.required" class="champs_requis">
+                <font color="red">Confirmation de mot de passe requise</font>
+            </div>
+        </div>
+
+        <p [ngClass]="{ 'has-error': isSubmitted && formControls.telephone.errors }">
+            <input #phone type="telephone" placeholder="Téléphone" formControlName="telephone">
+        </p>
+
+        <div *ngIf="isSubmitted && formControls.telephone.errors" class="help-block">
+            <div *ngIf="formControls.telephone.errors.required" class="champs_requis">
+                <font color="red">Le numéro de téléphone est requis</font>
+            </div>
+        </div>
+
+        <p>
+            <input #licence type="licence" placeholder="Numéro de licence" formControlName="licence">
+        </p>
+
+        <div class="boutons">
+            <input type="submit" value="S'inscrire">
+        </div>
+    </form>
+</div>
