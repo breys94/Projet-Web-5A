@@ -7,6 +7,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailException;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -24,10 +27,12 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.util.Date;
 
 @RestController
 @RequestMapping("/rest/user/api/")
 public class UserRestController {
+
     @Autowired
     private UserServiceImpl userService;
 
@@ -37,7 +42,7 @@ public class UserRestController {
     @CrossOrigin
     @GetMapping("/login")
     public String login() {
-        return "Login succesful";
+        return "Login successful";
     }
 
     @CrossOrigin
@@ -49,6 +54,30 @@ public class UserRestController {
             return new ResponseEntity<UserDTO>(userDTO, HttpStatus.OK);
         }
         return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
+    }
+
+    @CrossOrigin
+    @PutMapping("/sendEmail")
+    public ResponseEntity<Boolean> sendMailToCustomer(@RequestBody MailDTO mailDTO, UriComponentsBuilder uriComponentBuilder) {
+
+        System.out.println(mailDTO.getEmailUser());
+        System.out.println(mailDTO.getEmailSubject());
+        System.out.println(mailDTO.getEmailContent());
+
+        SimpleMailMessage mail = new SimpleMailMessage();
+        mail.setFrom(mailDTO.MAIL_FROM);
+        mail.setTo(mailDTO.getEmailUser());
+        mail.setSentDate(new Date());
+        mail.setSubject(mailDTO.getEmailSubject());
+        mail.setText(mailDTO.getEmailContent());
+
+        try {
+            javaMailSender.send(mail);
+        } catch (MailException e) {
+            return new ResponseEntity<Boolean>(false, HttpStatus.FORBIDDEN);
+        }
+
+        return new ResponseEntity<Boolean>(true, HttpStatus.OK);
     }
 
     @CrossOrigin

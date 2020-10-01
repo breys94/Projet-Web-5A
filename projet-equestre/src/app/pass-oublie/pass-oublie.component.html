@@ -1,1 +1,22 @@
-<p>pass-oublie works!</p>
+<div class="login">
+    <h2 class="login-header">Réinitialisation du mot de passe</h2>
+    <form [formGroup]="resetForm" class="login-container" (ngSubmit)="sendEmail()">
+      
+      <p [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }">
+        <input #login type="email" placeholder="Email ou Telephone" formControlName="email">
+      </p>
+  
+      <div *ngIf="isSubmitted && formControls.email.errors" class="help-block">
+        <div *ngIf="formControls.email.errors.required"><font color="red">Ce champ est requis</font></div>
+        <div *ngIf="formControls.email.errors"><font color="red">Ce champ doit respecter le format email</font></div>
+      </div>
+  
+      <div class="boutons">
+        <input type="submit" value="Envoyer l'email">
+      </div>
+    </form>
+    <br/>
+    <div class="retour">
+      <button routerLink="/connexion" class="btn">Retour</button>
+    </div>
+  </div>

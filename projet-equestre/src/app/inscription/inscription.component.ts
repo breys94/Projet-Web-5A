@@ -5,6 +5,7 @@ import { AuthService } from  '../auth.service';
 
 
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { ConfirmedValidator } from './confirmed.validator';
 
 @Component({
   selector: 'app-inscription',
@@ -28,15 +29,36 @@ export class InscriptionComponent implements OnInit {
     this.inscriptionForm  =  this.formBuilder.group({
         name: ['', Validators.required],
         surname: ['', Validators.required],
-        email: ['', Validators.required],
-        telephone: ['', Validators.required],
-        password: ['', Validators.required],
+        email: ["", Validators.compose([Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")])],
+        telephone: ["", Validators.compose([Validators.required, Validators.pattern("^[0-9]{10}")])],
+        password:  ["", Validators.compose([Validators.required, Validators.pattern(new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"))])],
         licence: [''],
-        passwdconfirm: [''],
+        passwdconfirm: ['', Validators.required],
         isMonitor: ['']
-    });
-
+    },{
+      validators: ConfirmedValidator('password', 'passwdconfirm')
+    }
+    );
   }
+
+  get password() {
+    return this.inscriptionForm.get('password');
+  }
+
+  get telephone() {
+    return this.inscriptionForm.get('telephone');
+  }
+
+  get passwdconfirm() {
+    return this.inscriptionForm.get('passwdconfirm');
+  }
+
+  checkPasswords(password:String, confpassword:String) {
+    let pass = password;
+    let passwdconfirm = confpassword;
+    console.log(pass, passwdconfirm)
+    return pass === passwdconfirm ? null : { notSame: true }     
+}
 
   get formControls() { 
     return this.inscriptionForm.controls; 

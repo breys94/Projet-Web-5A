@@ -7,6 +7,15 @@ button.link {
     color:white;
 }
 
+.retour{
+  text-align: center;
+}
+
+.btn{
+  background: white;
+  width: 90px;
+}
+
 .checkbutton{
   background-color: white;
   text-align: center;
