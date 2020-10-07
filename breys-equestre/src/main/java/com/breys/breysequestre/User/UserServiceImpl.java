@@ -43,6 +43,10 @@ public class UserServiceImpl implements UserService{
         return userDao.findUserByEmailIgnoreCase(email);
     }
 
+    public User findUserByPhone(String phone) {
+        return userDao.findUserByPhone(phone);
+    }
+
     public User findUserByFirstName(String name) {
         return userDao.findUserByFirstNameIgnoreCase(name);
     }

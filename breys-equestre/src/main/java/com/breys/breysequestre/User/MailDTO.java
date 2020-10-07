@@ -6,6 +6,7 @@ public class MailDTO {
     private String emailSubject;
     private String emailContent;
     private String emailUser;
+    private String code;
 
     public String getEmailUser() {
         return emailUser;
@@ -29,6 +30,14 @@ public class MailDTO {
 
     public void setEmailSubject(String emailSubject) {
         this.emailSubject = emailSubject;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
 }

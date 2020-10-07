@@ -2,36 +2,43 @@ package com.breys.breysequestre.User;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.modelmapper.ModelMapper;
-import org.springframework.web.cors.CorsUtils;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
 import java.util.Date;
 
 @RestController
 @RequestMapping("/rest/user/api/")
 public class UserRestController {
+
+    public static class InfoUser {
+        private String email;
+        private String password;
+
+        public String getEmail() {
+            return email;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+    }
 
     @Autowired
     private UserServiceImpl userService;
@@ -39,16 +46,42 @@ public class UserRestController {
     @Autowired
     private JavaMailSender javaMailSender;
 
+    private User user;
+
     @CrossOrigin
-    @GetMapping("/login")
-    public String login() {
-        return "Login successful";
+    @PostMapping("/login")
+    public ResponseEntity<Boolean> login(@RequestBody InfoUser infoUser) {
+
+        User user = userService.findUserByEmail(infoUser.getEmail());
+        if(user.getIsLog()){
+            return new ResponseEntity<Boolean>(false, HttpStatus.FORBIDDEN);
+        }
+
+        user.setIsLog(true);
+        userService.saveUser(user);
+
+        return new ResponseEntity<Boolean>(true, HttpStatus.OK);
     }
 
     @CrossOrigin
     @GetMapping("/searchUser")
-    public ResponseEntity<UserDTO> listUser(@RequestParam("firstName") String firstName) {
-        User user = userService.findUserByFirstName(firstName);
+    public ResponseEntity<UserDTO> listUser(@RequestParam("login") String login) {
+        boolean isPhone = true;
+        try {
+            Integer i = Integer.parseInt(login);
+        } catch (NumberFormatException e) {
+            isPhone = false;
+        }
+
+        if (isPhone == false){
+            System.out.println("utilisation de l'adresse mail");
+            user = userService.findUserByEmail(login);
+        }
+        else{
+            user = userService.findUserByPhone(login);
+            System.out.println("utilisation du téléphone");
+        }
+        
         if (user != null) {
             UserDTO userDTO = mapUserToUserDTO(user);
             return new ResponseEntity<UserDTO>(userDTO, HttpStatus.OK);
@@ -57,13 +90,8 @@ public class UserRestController {
     }
 
     @CrossOrigin
-    @PutMapping("/sendEmail")
-    public ResponseEntity<Boolean> sendMailToCustomer(@RequestBody MailDTO mailDTO, UriComponentsBuilder uriComponentBuilder) {
-
-        System.out.println(mailDTO.getEmailUser());
-        System.out.println(mailDTO.getEmailSubject());
-        System.out.println(mailDTO.getEmailContent());
-
+    @PostMapping("/sendEmail")
+    public ResponseEntity<Boolean> sendMailToUser(@RequestBody MailDTO mailDTO, UriComponentsBuilder uriComponentBuilder) {
         SimpleMailMessage mail = new SimpleMailMessage();
         mail.setFrom(mailDTO.MAIL_FROM);
         mail.setTo(mailDTO.getEmailUser());
@@ -71,9 +99,14 @@ public class UserRestController {
         mail.setSubject(mailDTO.getEmailSubject());
         mail.setText(mailDTO.getEmailContent());
 
+        User user = userService.findUserByEmail(mailDTO.getEmailUser());
+        user.setTmpCode(mailDTO.getCode());
+        userService.saveUser(user);
+
         try {
             javaMailSender.send(mail);
         } catch (MailException e) {
+            System.out.println(e);
             return new ResponseEntity<Boolean>(false, HttpStatus.FORBIDDEN);
         }
 
@@ -82,7 +115,7 @@ public class UserRestController {
 
     @CrossOrigin
     @PostMapping("/addUser")
-    public ResponseEntity<UserDTO> createNewCustomer(@RequestBody UserDTO userDTORequest) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public ResponseEntity<UserDTO> createNewUser(@RequestBody UserDTO userDTORequest) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
         String hashed = BCrypt.hashpw(userDTORequest.getPassword(), BCrypt.gensalt());
         //if (BCrypt.checkpw(candidate, hashed))
@@ -100,6 +133,25 @@ public class UserRestController {
             return new ResponseEntity<UserDTO>(userDTO, HttpStatus.CREATED);
         }
         return new ResponseEntity<UserDTO>(HttpStatus.NOT_MODIFIED);
+    }
+
+    @CrossOrigin
+    @PostMapping("/updatePassword")
+    public ResponseEntity<String> updatePassword(@RequestBody InfoUser infoUser) {
+
+        System.out.println(infoUser.getEmail());
+
+        User user = userService.findUserByEmail(infoUser.getEmail());
+
+        String hashed = BCrypt.hashpw(infoUser.getPassword(), BCrypt.gensalt());
+        user.setPassword(hashed);
+        user.setTmpCode(null);
+        userService.saveUser(user);
+
+        //User user = userService.findUserByEmail(email);
+        //System.out.println(password);
+
+        return new ResponseEntity<String>("Validé", HttpStatus.CREATED);
     }
 
     private UserDTO mapUserToUserDTO(User user) {

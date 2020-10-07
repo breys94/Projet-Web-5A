@@ -26,6 +26,9 @@ public class User {
     private String password;
     private String licence;
     private String role;
+    //Correspond au code envoyé lors d'une réintialisation de mot de passe
+    private String tmpCode;
+    private boolean isLog;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -99,6 +102,24 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Column(name = "TMPCODE", nullable = true)
+    public String getTmpCode() {
+        return tmpCode;
+    }
+
+    public void setTmpCode(String tmpCode) {
+        this.tmpCode = tmpCode;
+    }
+
+    @Column(name = "ISLOG", nullable = true)
+    public boolean getIsLog() {
+        return isLog;
+    }
+
+    public void setIsLog(boolean isLog) {
+        this.isLog = isLog;
     }
 
 }

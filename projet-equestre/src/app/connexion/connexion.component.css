@@ -11,6 +11,7 @@ button.link {
   width: 400px;
   margin: 16px auto;
   font-size: 16px;
+  transform: translateY(50%);
 }
 
 .login-header,

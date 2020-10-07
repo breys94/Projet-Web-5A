@@ -9,6 +9,8 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { AdminComponent } from './admin/admin.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { PassOublieComponent } from './pass-oublie/pass-oublie.component';
+import { DemandeCodeComponent } from './demande-code/demande-code.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { PassOublieComponent } from './pass-oublie/pass-oublie.component';
     ConnexionComponent,
     AdminComponent,
     InscriptionComponent,
-    PassOublieComponent
+    PassOublieComponent,
+    DemandeCodeComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

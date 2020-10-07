@@ -4,6 +4,8 @@ import { AuthService } from  '../auth.service';
 import { FormBuilder, FormGroup, Validators } from  '@angular/forms';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
+import { userResponse } from '../response_api/userResponse';
+
 @Component({
   selector: 'app-pass-oublie',
   templateUrl: './pass-oublie.component.html',
@@ -14,6 +16,8 @@ export class PassOublieComponent implements OnInit {
   resetForm: FormGroup;
   isSubmitted  =  false;
   url = "http://localhost:8080/rest/user/api/sendEmail/";
+  subject = "Réinitialisation de mot de passe"
+  content = "Bonjour __NAME__,\n Voici votre code pour réinitialiser votre mot de passe :\n __CODE__ \n\nCordialement,\n Breys Equestre"
 
   constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder, private httpClient: HttpClient ) {
 
@@ -29,16 +33,37 @@ export class PassOublieComponent implements OnInit {
     return this.resetForm.controls; 
   }
 
-  sendEmail(){
+  isUserExists(){
     this.isSubmitted = true;
     if(this.resetForm.invalid){
       return;
     }
-    this.router.navigateByUrl('/connexion');
+
+    let url = "http://localhost:8080/rest/user/api/searchUser/";
+    let param = new HttpParams().set('login', this.resetForm.get("email").value)
+    this.httpClient.get<userResponse>(url, {params:param}).subscribe(userResponse => {
+      console.log(userResponse)
+      if(userResponse === null)console.log(false)
+      else this.sendEmail(userResponse.firstName)
+    });
   }
 
-  goBack(){
-    this.router.navigateByUrl('/connexion');
-  }
+  sendEmail(name:string){
 
+    this.router.navigateByUrl('/demande_code/' + this.resetForm.get("email").value);
+
+    let code = Math.floor(Math.random() * (999999 - 100000));
+    let jsonToSend = {emailUser:this.resetForm.get("email").value, emailSubject:this.subject, code:code, emailContent:this.content.replace("__CODE__",code.toString()).replace("__NAME__", name)}
+
+    console.log(jsonToSend)
+    
+    this.httpClient.post(this.url, jsonToSend).subscribe(
+      () => {
+        console.log("Succès");
+      }, 
+      (res) => {
+        console.log("Erreur " + res.status)
+      },
+    )
+  }
 }

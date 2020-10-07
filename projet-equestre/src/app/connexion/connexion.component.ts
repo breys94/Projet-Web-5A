@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from  '@angular/forms';
 import { Router } from  '@angular/router';
-import { Utilisateur } from  '../utilisateur';
 import { AuthService } from  '../auth.service';
+
+import { UserService } from '../user.service';
 
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
@@ -19,7 +20,7 @@ export class ConnexionComponent implements OnInit {
   isSubmitted  =  false;
   url = "http://localhost:8080/rest/user/api/login/";
 
-  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder, private httpClient: HttpClient ) {
+  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder, private httpClient: HttpClient, private userService: UserService ) {
 
    }
 
@@ -45,10 +46,8 @@ export class ConnexionComponent implements OnInit {
       return;
     }
 
-    const headers = new HttpHeaders({Authorization: 'Basic' + btoa(login+":"+password)})
-    this.httpClient.get(this.url, {headers, responseType:'text' as 'json'}).subscribe(data =>
-      console.log(data)
-    )
+    this.userService.login(this.loginForm.get("email").value, this.loginForm.get("password").value)
+
   }
 
   inscription(){

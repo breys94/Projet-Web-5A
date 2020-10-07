@@ -1,0 +1,25 @@
+<div class="login">
+    <h2 class="login-header">Entrez le code reçu</h2>
+    
+    <form [formGroup]="codeForm" class="login-container" (ngSubmit)="checkCode()">
+
+      <p>
+        <input placeholder="Code à 6 chiffres" formControlName="code">
+      </p>
+      
+      <div *ngIf=!valid class="help-block">
+        <font color="red">Le code n'est pas bon</font>
+      </div>
+
+      <div class="boutons">
+        <input type="submit" value="Valider le code">
+      </div>
+
+    </form>
+
+    <br/>
+    <div class="retour">
+      <button routerLink="/connexion" class="btn">Retour</button>
+    </div>
+  </div>
+

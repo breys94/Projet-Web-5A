@@ -19,6 +19,8 @@ public interface UserService {
 
     public User findUserByEmail(String email);
 
+    public User findUserByPhone(String phone);
+
     public User findUserByFirstName(String name);
 
     public List<User> findUserByLastName(String lastName);

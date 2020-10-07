@@ -11,6 +11,9 @@ public class UserDTO implements Comparable<UserDTO>{
     private String password;
     private String licence;
     private String role;
+    //Correspond au code envoyé lors d'une réintialisation de mot de passe
+    private String tmpCode;
+    private boolean isLog;
 
     public Integer getId() {
         return id;
@@ -74,6 +77,22 @@ public class UserDTO implements Comparable<UserDTO>{
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getTmpCode() {
+        return tmpCode;
+    }
+
+    public void setTmpCode(String tmpCode) {
+        this.tmpCode = tmpCode;
+    }
+
+    public boolean getIsLog() {
+        return isLog;
+    }
+
+    public void setIsLog(boolean isLog) {
+        this.isLog = isLog;
     }
 
     @Override

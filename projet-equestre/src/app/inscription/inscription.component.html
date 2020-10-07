@@ -52,8 +52,9 @@
             <input #passwdconfirm type="password" placeholder="Confirmer votre mot de passe" formControlName="passwdconfirm">
         </p>
 
-        <div *ngIf="isSubmitted && formControls.password.errors" class="help-block">
-            <div *ngIf="formControls.password.errors.required" class="champs_requis"><font color="red">Confirmation de mot de passe requise</font></div>
+        <div *ngIf="isSubmitted && formControls.passwdconfirm.errors" class="help-block">
+            <div *ngIf="formControls.passwdconfirm.errors.required" class="champs_requis"><font color="red">Confirmation de mot de passe requise</font></div>
+            <div *ngIf="formControls.passwdconfirm.errors.confirmedValidator" class="champs_requis"><font color="red">Les mots de passe ne sont pas identiques</font></div>
         </div>
 
         <p [ngClass]="{ 'has-error': isSubmitted && formControls.telephone.errors }">
