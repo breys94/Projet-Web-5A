@@ -25,6 +25,8 @@ public interface UserService {
 
     public List<User> findUserByLastName(String lastName);
 
+    public List<User> findUsers();
+
     public User findUserById(Integer customerId);
 
     public User findUserByPassword(String password);

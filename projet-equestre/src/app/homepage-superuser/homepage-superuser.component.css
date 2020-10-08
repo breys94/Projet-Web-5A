@@ -1,0 +1,30 @@
+.body {
+    background-image: url("../../assets/image_centre_equestre.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.center-div
+{
+  margin: 0 auto;
+  width: 600px;
+  transform: translateY(20%);
+}
+
+.label {
+    font-size: xx-large;
+}
+
+.list{
+    color:black ; 
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.show-list-admins {
+    margin: 0 auto;
+    height: 400px;
+    width: 500px;
+}

@@ -1,0 +1,20 @@
+<body class="body">
+    <div class="center-div">
+        <label class="label">Bienvenu sur la page de Super Utilisateur</label>
+
+        <div class="list">
+            <button (click)="listAdmins()"><U>Liste des administrateurs</U></button>
+        </div>
+    </div>
+    
+    <div class="show-list-admins" *ngIf="showList">
+        <label><U>Gérer les utilisateurs :</U></label>
+        <div>
+            <ul>
+                <li *ngFor="let user of listUsers" (click)="onSelect(user)"> {{ user.email }} </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+

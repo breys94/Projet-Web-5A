@@ -50,8 +50,6 @@ export class PassOublieComponent implements OnInit {
 
   sendEmail(name:string){
 
-    this.router.navigateByUrl('/demande_code/' + this.resetForm.get("email").value);
-
     let code = Math.floor(Math.random() * (999999 - 100000));
     let jsonToSend = {emailUser:this.resetForm.get("email").value, emailSubject:this.subject, code:code, emailContent:this.content.replace("__CODE__",code.toString()).replace("__NAME__", name)}
 
@@ -60,6 +58,7 @@ export class PassOublieComponent implements OnInit {
     this.httpClient.post(this.url, jsonToSend).subscribe(
       () => {
         console.log("Succès");
+        this.router.navigateByUrl('/demande_code/' + this.resetForm.get("email").value);
       }, 
       (res) => {
         console.log("Erreur " + res.status)

@@ -1,10 +1,16 @@
 package com.breys.breysequestre;
 
+import com.breys.breysequestre.User.User;
+import com.breys.breysequestre.User.UserService;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 
+import org.springframework.context.event.EventListener;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -20,6 +26,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @SpringBootApplication
 public class BreysEquestreApplication extends SpringBootServletInitializer {
+
+	private static UserService userService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(BreysEquestreApplication.class, args);

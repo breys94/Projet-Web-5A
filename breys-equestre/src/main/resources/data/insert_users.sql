@@ -1,0 +1,1 @@
+insert into USER values ('1', 'reys37.bastien@gmail.com', 'bastien', false, 'reys', '', '$2a$10$9mUFcMRX/JrFCtN24WU/seoFerZCEWx./EVpG8AdQdkMySCwH8Oh2', '0606060606', 'USER', null);

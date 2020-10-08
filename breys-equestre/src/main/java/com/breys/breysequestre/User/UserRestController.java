@@ -13,7 +13,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/rest/user/api/")
@@ -50,17 +52,41 @@ public class UserRestController {
 
     @CrossOrigin
     @PostMapping("/login")
-    public ResponseEntity<Boolean> login(@RequestBody InfoUser infoUser) {
+    public ResponseEntity<Integer> login(@RequestBody InfoUser infoUser) {
 
-        User user = userService.findUserByEmail(infoUser.getEmail());
-        if(user.getIsLog()){
-            return new ResponseEntity<Boolean>(false, HttpStatus.FORBIDDEN);
+        boolean isPhone = true;
+        try {
+            Integer i = Integer.parseInt(infoUser.getEmail());
+        } catch (NumberFormatException e) {
+            isPhone = false;
         }
 
-        user.setIsLog(true);
-        userService.saveUser(user);
+        if (isPhone == false){
+            System.out.println("utilisation de l'adresse mail");
+            user = userService.findUserByEmail(infoUser.getEmail());
+        }
+        else{
+            user = userService.findUserByPhone(infoUser.getEmail());
+            System.out.println("utilisation du téléphone");
+        }
 
-        return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+        if (user == null) {
+            return new ResponseEntity<Integer>(1, HttpStatus.OK);
+        }
+
+        if(user.getIsLog()){
+            return new ResponseEntity<Integer>(0, HttpStatus.OK);
+        }
+
+        if (BCrypt.checkpw(infoUser.getPassword(), user.getPassword())){
+            user.setIsLog(true);
+            userService.saveUser(user);
+            return new ResponseEntity<Integer>(0, HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<Integer>(3, HttpStatus.OK);
+        }
+
     }
 
     @CrossOrigin
@@ -81,12 +107,23 @@ public class UserRestController {
             user = userService.findUserByPhone(login);
             System.out.println("utilisation du téléphone");
         }
-        
+
         if (user != null) {
             UserDTO userDTO = mapUserToUserDTO(user);
             return new ResponseEntity<UserDTO>(userDTO, HttpStatus.OK);
         }
         return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
+    }
+
+    @CrossOrigin
+    @GetMapping("/searchUsers")
+    public List<UserDTO> listUsers() {
+        List<User> listUser = userService.findUsers();
+        List<UserDTO> listToReturn = new ArrayList<>();
+        for(User user : listUser){
+            listToReturn.add(mapUserToUserDTO(user));
+        }
+        return listToReturn;
     }
 
     @CrossOrigin
@@ -118,7 +155,6 @@ public class UserRestController {
     public ResponseEntity<UserDTO> createNewUser(@RequestBody UserDTO userDTORequest) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
         String hashed = BCrypt.hashpw(userDTORequest.getPassword(), BCrypt.gensalt());
-        //if (BCrypt.checkpw(candidate, hashed))
         userDTORequest.setPassword(hashed);
 
         User existingUser = userService.findUserByEmail(userDTORequest.getEmail());

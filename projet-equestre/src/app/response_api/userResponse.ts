@@ -4,4 +4,5 @@ export interface userResponse {
     email:string
     phone:string 
     tmpCode:string
+    role:string
 }

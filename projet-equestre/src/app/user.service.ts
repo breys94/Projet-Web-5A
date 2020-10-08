@@ -26,4 +26,8 @@ export class UserService {
     return this.httpClient.post("http://localhost:8080/rest/user/api/login/", jsonToSend)
   }
 
+  getUsers():Observable<userResponse>{
+    return this.httpClient.get<userResponse>("http://localhost:8080/rest/user/api/searchUsers/")
+  }
+
 }
