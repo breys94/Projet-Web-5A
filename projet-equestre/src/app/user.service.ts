@@ -30,4 +30,14 @@ export class UserService {
     return this.httpClient.get<userResponse>("http://localhost:8080/rest/user/api/searchUsers/")
   }
 
+  getUsersRole(role:string):Observable<userResponse>{
+    let param = new HttpParams().set("role", role)
+    return this.httpClient.get<userResponse>("http://localhost:8080/rest/user/api/searchUsersRole/", {params:param})
+  }
+
+  updateUser(id:number, email:string, firstName:string, lastName:string, phone:string){
+    let jsonToSend = {id:id, email:email, firstName:firstName, lastName:lastName, phone:phone}
+    return this.httpClient.post("http://localhost:8080/rest/user/api/updateUser/", jsonToSend)
+  }
+
 }

@@ -12,6 +12,8 @@ import { PassOublieComponent } from './pass-oublie/pass-oublie.component';
 import { DemandeCodeComponent } from './demande-code/demande-code.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { HomepageSuperuserComponent } from './homepage-superuser/homepage-superuser.component';
+import { ShowadminComponent } from './showadmin/showadmin.component'
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { HomepageSuperuserComponent } from './homepage-superuser/homepage-superu
     PassOublieComponent,
     DemandeCodeComponent,
     ChangePasswordComponent,
-    HomepageSuperuserComponent
+    HomepageSuperuserComponent,
+    ShowadminComponent
   ],
   imports: [
     BrowserModule,

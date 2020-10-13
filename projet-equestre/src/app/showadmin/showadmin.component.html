@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<form [formGroup]="updateForm" (ngSubmit)="updateUser()">
+			<div class="card text-center" style="border-radius: 0px 0px 40px 40px;">
+				<div class="card-header">
+					<h2>Update Utilisateur</h2>
+				</div>
+				<div class="card-body">
+				<br>
+				<br>
+				<br>
+				  <div class="row">
+					<div class="col">
+						<label>Email</label>
+						<input [style.color]="ok === true ? 'green' : conflictMail === true ? 'red' : 'black'" type="text" class="form-control" value="{{ arrayUser[4].value }}" formControlName="email"><br>
+						
+						<label>Téléphone</label>
+						<input [style.color]="ok === true ? 'green' : conflictPhone === true ? 'red' : 'black'" type="text" class="form-control" value="{{ arrayUser[3].value }}" formControlName="phone"><br>
+					</div>
+					<div class="col">
+						<label>Nom</label>
+						<input [style.color]="ok === true ? 'green' : 'black'" type="text" class="form-control" value="{{ arrayUser[2].value }}" formControlName="firstName"><br>
+						
+						<label>Prénom</label>
+						<input [style.color]="ok === true ? 'green' : 'black'" type="text" class="form-control" value="{{ arrayUser[1].value }}" formControlName="lastName"><br>
+					</div>
+				  </div>
+				  
+				  <br>
+				  <br>
+
+				  <div style="text-align : center ; ">
+					<input type="submit" value="Modifier Utilisateur">
+				  </div>
+				</div>
+			</div>  
+		</form>
+	</body>
+</html>

@@ -24,6 +24,10 @@ public class UserRestController {
     public static class InfoUser {
         private String email;
         private String password;
+        private String phone;
+        private String firstName;
+        private String lastName;
+        private Integer id;
 
         public String getEmail() {
             return email;
@@ -39,6 +43,38 @@ public class UserRestController {
 
         public void setPassword(String password) {
             this.password = password;
+        }
+
+        public String getPhone() {
+            return phone;
+        }
+
+        public void setPhone(String phone) {
+            this.phone = phone;
+        }
+
+        public String getFirstName() {
+            return firstName;
+        }
+
+        public String getLastName() {
+            return lastName;
+        }
+
+        public void setFirstName(String firstName) {
+            this.firstName = firstName;
+        }
+
+        public void setLastName(String lastName) {
+            this.lastName = lastName;
+        }
+
+        public Integer getId() {
+            return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
         }
     }
 
@@ -116,6 +152,17 @@ public class UserRestController {
     }
 
     @CrossOrigin
+    @GetMapping("/searchUsersRole")
+    public List<UserDTO> listUsersRole(@RequestParam("role") String role) {
+        List<User> listUser = userService.findUserByRole(role);
+        List<UserDTO> listToReturn = new ArrayList<>();
+        for(User user : listUser){
+            listToReturn.add(mapUserToUserDTO(user));
+        }
+        return listToReturn;
+    }
+
+    @CrossOrigin
     @GetMapping("/searchUsers")
     public List<UserDTO> listUsers() {
         List<User> listUser = userService.findUsers();
@@ -184,10 +231,44 @@ public class UserRestController {
         user.setTmpCode(null);
         userService.saveUser(user);
 
-        //User user = userService.findUserByEmail(email);
-        //System.out.println(password);
-
         return new ResponseEntity<String>("Validé", HttpStatus.CREATED);
+    }
+
+    @CrossOrigin
+    @PostMapping("/updateUser")
+    public ResponseEntity<Integer> updateUser(@RequestBody InfoUser infoUser) {
+
+        User userTmpEmail = userService.findUserByEmail(infoUser.getEmail());
+        if (userTmpEmail != null) {
+            System.out.println(userTmpEmail.getId().toString() + "  " + infoUser.getId().toString());
+            if(userTmpEmail.getId().equals(infoUser.getId())){
+                System.out.println("OK");
+            }
+            else {
+                return new ResponseEntity<Integer>(1, HttpStatus.OK);
+            }
+        }
+
+        User userTmpPhone = userService.findUserByPhone(infoUser.getPhone());
+        if (userTmpPhone != null) {
+            if(userTmpPhone.getId().equals(infoUser.getId())){
+                System.out.println("OK");
+            }
+            else {
+                return new ResponseEntity<Integer>(1, HttpStatus.OK);
+            }
+        }
+
+        User user = userService.findUserById(infoUser.getId());
+
+        user.setEmail(infoUser.getEmail());
+        user.setFirstName(infoUser.getFirstName());
+        user.setLastName(infoUser.getLastName());
+        user.setPhone(infoUser.getPhone());
+
+        userService.saveUser(user);
+
+        return new ResponseEntity<Integer>(0, HttpStatus.OK);
     }
 
     private UserDTO mapUserToUserDTO(User user) {

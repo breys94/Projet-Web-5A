@@ -11,12 +11,16 @@ import { UserService } from '../user.service';
 export class HomepageSuperuserComponent implements OnInit {
 
   showList: boolean
+  showUser:boolean
   listUsers;
+  selectedUser;
+  email;
 
   constructor(private router: Router, private userService:UserService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe(data => this.listUsers = data);
+    this.userService.getUsersRole("ADMIN").subscribe(data => this.listUsers = data);
+    this.email = this.route.snapshot.params['email']
   }
 
   listAdmins(){
@@ -24,7 +28,12 @@ export class HomepageSuperuserComponent implements OnInit {
   }
 
   onSelect(user){
-    console.log(user)
+    this.showUser = true;
+    this.selectedUser = user
+  }
+
+  onValid(valid:boolean){
+    if(valid === true)this.userService.getUsersRole("ADMIN").subscribe(data => this.listUsers = data);
   }
 
 }

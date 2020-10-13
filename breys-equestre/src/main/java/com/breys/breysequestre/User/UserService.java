@@ -27,6 +27,8 @@ public interface UserService {
 
     public List<User> findUsers();
 
+    public List<User> findUserByRole(String role);
+
     public User findUserById(Integer customerId);
 
     public User findUserByPassword(String password);

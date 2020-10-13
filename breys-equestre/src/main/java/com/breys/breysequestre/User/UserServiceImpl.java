@@ -59,6 +59,10 @@ public class UserServiceImpl implements UserService{
         return userDao.findAll();
     }
 
+    public List<User> findUserByRole(String role){
+        return  userDao.findUserByRoleIgnoreCase(role);
+    }
+
     public User findUserByPassword(String password){
         return userDao.findUserByPassword(password);
     }

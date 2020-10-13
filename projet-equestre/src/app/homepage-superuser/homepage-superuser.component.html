@@ -1,20 +1,36 @@
-<body class="body">
-    <div class="center-div">
-        <label class="label">Bienvenu sur la page de Super Utilisateur</label>
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	</head>
+	<body class="body">
 
-        <div class="list">
-            <button (click)="listAdmins()"><U>Liste des administrateurs</U></button>
-        </div>
-    </div>
-    
-    <div class="show-list-admins" *ngIf="showList">
-        <label><U>Gérer les utilisateurs :</U></label>
-        <div>
-            <ul>
-                <li *ngFor="let user of listUsers" (click)="onSelect(user)"> {{ user.email }} </li>
-            </ul>
-        </div>
-    </div>
-</body>
+		<div class="center-div">
+			<label class="label">Bienvenu sur la page de Super Utilisateur</label><br>
 
+			<div class="list">
+				<button type="button" class="btn btn-light" (click)="listAdmins()">Liste des utilisateurs</button>
+			</div> <br>
+		</div>
+		
+		<div class="show-list-admins" *ngIf="showList">
+		
+			<div class="card-header">
+				<h2 style="text-align: center;">Gérer les utilisateurs :</h2>
+			</div>
+			
+			<br>
+					
+			<div class="scroll">
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item list-group-item-action" *ngFor="let user of listUsers" (click)="onSelect(user)">{{ user.email }}</li>
+				</ul>
+			</div>
+			
+			
+			<app-showadmin (valid)="onValid($event)" [user]="selectedUser" *ngIf="showUser" class="show-details" style="background-color:#EBEBEB;"></app-showadmin>
+			
+		</div>
 
+	</body>
+</html>
