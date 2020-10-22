@@ -29,6 +29,7 @@ public class User {
     //Correspond au code envoyé lors d'une réintialisation de mot de passe
     private String tmpCode;
     private boolean isLog;
+    private Integer nbBlock;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -120,6 +121,15 @@ public class User {
 
     public void setIsLog(boolean isLog) {
         this.isLog = isLog;
+    }
+
+    @Column(name = "NBBLOCK",  nullable = true)
+    public Integer getNbBlock() {
+        return nbBlock;
+    }
+
+    public void setNbBlock(Integer nbBlock) {
+        this.nbBlock = nbBlock;
     }
 
 }

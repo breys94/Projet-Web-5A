@@ -3,6 +3,10 @@ html, body {
 	height : 100%;
 }
 
+.deco {
+    display: flex;
+}
+
 .center-div
 {
   margin: 0 auto;

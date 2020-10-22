@@ -116,11 +116,19 @@ public class UserRestController {
 
         if (BCrypt.checkpw(infoUser.getPassword(), user.getPassword())){
             user.setIsLog(true);
+            user.setNbBlock(0);
             userService.saveUser(user);
             return new ResponseEntity<Integer>(0, HttpStatus.OK);
         }
         else{
-            return new ResponseEntity<Integer>(3, HttpStatus.OK);
+            user.setNbBlock(user.getNbBlock() + 1);
+            userService.saveUser(user);
+            if(user.getNbBlock() >= 3){
+                return new ResponseEntity<Integer>(4, HttpStatus.OK);
+            }
+            else{
+                return new ResponseEntity<Integer>(3, HttpStatus.OK);
+            }
         }
 
     }
@@ -160,6 +168,28 @@ public class UserRestController {
             listToReturn.add(mapUserToUserDTO(user));
         }
         return listToReturn;
+    }
+
+    @CrossOrigin
+    @GetMapping("/searchNbBlock")
+    public ResponseEntity<Integer> getNbBlock(@RequestParam("login") String login) {
+        boolean isPhone = true;
+        try {
+            Integer i = Integer.parseInt(login);
+        } catch (NumberFormatException e) {
+            isPhone = false;
+        }
+
+        if (isPhone == false){
+            System.out.println("utilisation de l'adresse mail");
+            user = userService.findUserByEmail(login);
+        }
+        else{
+            user = userService.findUserByPhone(login);
+            System.out.println("utilisation du téléphone");
+        }
+
+        return new ResponseEntity<Integer>(user.getNbBlock(), HttpStatus.CREATED);
     }
 
     @CrossOrigin

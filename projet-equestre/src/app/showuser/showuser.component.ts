@@ -3,13 +3,14 @@ import { userResponse } from '../response_api/userResponse';
 import { Router, ActivatedRoute } from  '@angular/router';
 import { UserService } from '../user.service';
 import { FormBuilder, FormGroup, Validators } from  '@angular/forms';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Component({
-  selector: 'app-showadmin',
-  templateUrl: './showadmin.component.html',
-  styleUrls: ['./showadmin.component.css']
+  selector: 'app-showuser',
+  templateUrl: './showuser.component.html',
+  styleUrls: ['./showuser.component.css']
 })
-export class ShowadminComponent implements OnInit, OnChanges {
+export class ShowuserComponent implements OnInit, OnChanges {
 
   @Input() user: userResponse;
   @Output() valid = new EventEmitter<boolean>();
@@ -40,35 +41,9 @@ export class ShowadminComponent implements OnInit, OnChanges {
   get formControls() { 
     return this.updateForm.controls; 
   }
-  
-  updateUser(){
 
-    if(this.updateForm.invalid){
-      return;
-    }
-
-    let response = this.userService.updateUser(
-     this.arrayUser[0].value,
-     this.updateForm.get("email").value,
-     this.updateForm.get("firstName").value, 
-     this.updateForm.get("lastName").value, 
-     this.updateForm.get("phone").value
-     ).subscribe(userResponse => {
-      if (userResponse === 0){
-        this.ok = true
-        this.valid.emit(true);
-      }
-      if (userResponse === 1){
-        this.conflictMail = true
-        this.conflictPhone = false
-        this.ok = false
-      }
-      if (userResponse === 2){
-        this.conflictPhone = true
-        this.conflictMail = false
-        this.ok = false
-      }
-    })
+  goBack(){
+    this.valid.emit(true);
   }
 
 }

@@ -5,8 +5,14 @@
 	</head>
 	<body class="body">
 
+		<nav class="navbar navbar-light">
+			<label class="label">Bienvenu sur la page du Super utilisateur</label>
+			<div class="deco ml-auto align-items-center">
+				<a class="btn btn-secondary btn-lg active" style="border-radius: 40px;" role="button" aria-pressed="true">{{ email[0] }}{{ email[2] }}</a>
+			</div>
+		</nav>
+
 		<div class="center-div">
-			<label class="label">Bienvenu sur la page de Super Utilisateur</label><br>
 
 			<div class="list">
 				<button type="button" class="btn btn-light" (click)="listAdmins()">Liste des utilisateurs</button>

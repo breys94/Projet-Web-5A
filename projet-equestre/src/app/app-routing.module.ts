@@ -8,6 +8,7 @@ import { PassOublieComponent } from './pass-oublie/pass-oublie.component';
 import { DemandeCodeComponent } from './demande-code/demande-code.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { HomepageSuperuserComponent } from './homepage-superuser/homepage-superuser.component'
+import { HomepageAdminComponent } from './homepage-admin/homepage-admin.component'
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'connexion'},
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'mot_de_passe_oublie', component: PassOublieComponent },
   { path: 'demande_code/:email', component: DemandeCodeComponent },
   { path: 'change_password/:email', component: ChangePasswordComponent},
-  { path: 'super_user/:email', component: HomepageSuperuserComponent}
+  { path: 'super_user/:email', component: HomepageSuperuserComponent},
+  { path: 'admin/:email', component: HomepageAdminComponent}
 ];
 
 @NgModule({

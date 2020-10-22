@@ -1,0 +1,19 @@
+html, body {
+    background-color:#EBEBEB;
+	height : 100%;
+}
+
+.center-div
+{
+  margin: 0 auto;
+  width: 600px;
+}
+
+.label {
+    font-size: xx-large;
+	text-align: center;
+}
+
+li {
+  cursor: pointer;
+  }

@@ -56,7 +56,12 @@ export class ConnexionComponent implements OnInit {
         user.subscribe(userResponse => {
           console.log(userResponse.role)
           if(userResponse.role === "SUPERUSER") this.router.navigateByUrl('/super_user/' + this.loginForm.get("email").value);
+          if(userResponse.role === "ADMIN") this.router.navigateByUrl('/admin/' + this.loginForm.get("email").value);
         })
+      }
+      if (userResponse === 4){
+        this.valid = false
+        this.router.navigateByUrl('mot_de_passe_oublie')
       }
       if (userResponse === 3){
         this.valid = false

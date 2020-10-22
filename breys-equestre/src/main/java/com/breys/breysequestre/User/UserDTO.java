@@ -14,6 +14,7 @@ public class UserDTO implements Comparable<UserDTO>{
     //Correspond au code envoyé lors d'une réintialisation de mot de passe
     private String tmpCode;
     private boolean isLog;
+    private Integer nbBlock;
 
     public Integer getId() {
         return id;
@@ -93,6 +94,14 @@ public class UserDTO implements Comparable<UserDTO>{
 
     public void setIsLog(boolean isLog) {
         this.isLog = isLog;
+    }
+
+    public Integer getNbBlock() {
+        return nbBlock;
+    }
+
+    public void setNbBlock(Integer nbBlock) {
+        this.nbBlock = nbBlock;
     }
 
     @Override

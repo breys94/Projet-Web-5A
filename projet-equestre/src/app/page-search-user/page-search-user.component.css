@@ -1,0 +1,7 @@
+.scroll {
+	background-color: white;
+	top: 20px;
+	bottom: 20px;
+	height: 400px;
+	overflow: auto;
+}

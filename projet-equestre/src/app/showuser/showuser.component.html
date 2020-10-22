@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<body>
-		<form [formGroup]="updateForm" (ngSubmit)="updateUser()">
-			<div class="card text-center" style="border-radius: 0px 0px 40px 40px;">
+		<form [formGroup]="updateForm" style="border-radius: 40px 40px 40px 40px;">
+			<div class="card text-center">
 				<div class="card-header">
-					<h2>Update Utilisateur</h2>
+					<h2>{{ arrayUser[2].value }} {{ arrayUser[1].value }}</h2>
 				</div>
-				<div class="card-body">
+				<div class="card-body" style="border-radius: 0px 0px 40px 40px;">
 				<br>
 				<br>
 				<br>
@@ -22,20 +22,24 @@
 					</div>
 					<div class="col">
 						<label>Nom</label>
-						<input [style.color]="ok === true ? 'green' : 'black'" type="text" class="form-control" value="{{ arrayUser[2].value }}" formControlName="firstName"><br>
+						<input [style.color]="ok === true ? 'green' : 'black'" type="text" class="form-control" value="{{ arrayUser[1].value }}" formControlName="lastName"><br>
 						
 						<label>Prénom</label>
-						<input [style.color]="ok === true ? 'green' : 'black'" type="text" class="form-control" value="{{ arrayUser[1].value }}" formControlName="lastName"><br>
+						<input [style.color]="ok === true ? 'green' : 'black'" type="text" class="form-control" value="{{ arrayUser[1].value }}" formControlName="firstName"><br>
 					</div>
 				  </div>
 				  
 				  <br>
-				  <br>
-
-				  <div style="text-align : center ; ">
-					<input type="submit" value="Modifier Utilisateur">
-				  </div>
+                  <br>
+                  
+                </div>
+                
+                <div style="text-align : center ; ">
+					<button (click)="goBack()" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                        Retour
+                    </button>
 				</div>
+
 			</div>  
 		</form>
 	</body>

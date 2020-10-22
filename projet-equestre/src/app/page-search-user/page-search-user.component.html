@@ -1,0 +1,16 @@
+<br>
+
+<div *ngIf="!showUser" class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">@</span>
+    </div>
+    <input (keyup)=getSearch($event) type="text" class="form-control" placeholder="Rechercher" aria-label="Rechercher" aria-describedby="basic-addon1">
+</div>
+
+<div *ngIf="!showUser" class="scroll" style="border-radius: 40px 40px 40px 40px;">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item list-group-item-action" *ngFor="let user of listUsers" (click)="onSelect(user)">{{ user.email }}</li>
+    </ul>
+</div>
+
+<app-showuser (valid)="onValid($event)" [user]="selectedUser" *ngIf="showUser"></app-showuser>
