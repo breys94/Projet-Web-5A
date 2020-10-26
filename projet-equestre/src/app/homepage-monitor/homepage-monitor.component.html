@@ -1,0 +1,29 @@
+<html>
+    <head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	</head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="#">Breys-Equestre</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+			  <span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+			  <ul class="navbar-nav mr-auto">
+				<li class="nav-item active" (click)="loadCreatePage()">
+				  <a class="nav-link">Créer une reprise</a>
+				</li>
+				<li class="nav-item" (click)="loadAssignPage()">
+				  <a class="nav-link">Assigner des chevaux</a>
+				</li>
+			  </ul>
+			  <button (click)="loadProfile()" class="btn btn-outline-success my-2 my-sm-0">Profil</button>
+			</div>
+          </nav>
+          
+          <div *ngIf="showProfile" class="center-div">
+			<app-page-profile></app-page-profile>				
+		</div>
+
+    </body>
+</html>

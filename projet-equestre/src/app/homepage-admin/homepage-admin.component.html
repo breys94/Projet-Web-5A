@@ -21,19 +21,17 @@
 				<li class="nav-item" (click)="loadcreateHorsePage()">
 				  <a class="nav-link">Créer une fiche cheval</a>
 				</li>
-				<li class="nav-item" (click)="loadUnlockPage()">
-					<a class="nav-link">Débloquer un utilisateur</a>
-				  </li>
 			  </ul>
+			  <button (click)="loadProfile()" class="btn btn-outline-success my-2 my-sm-0">Profil</button>
 			</div>
 		  </nav>
 		
-		<br *ngIf="!showCreate && !showUnlock && !showSearch && !showCreateHorse">
-		<br *ngIf="!showCreate && !showUnlock && !showSearch && !showCreateHorse">
-		<br *ngIf="!showCreate && !showUnlock && !showSearch && !showCreateHorse">
-		<br *ngIf="!showCreate && !showUnlock && !showSearch && !showCreateHorse">
+		<br *ngIf="!showCreate && !showUnlock && !showSearch && !showCreateHorse && !showProfile">
+		<br *ngIf="!showCreate && !showUnlock && !showSearch && !showCreateHorse && !showProfile">
+		<br *ngIf="!showCreate && !showUnlock && !showSearch && !showCreateHorse && !showProfile">
+		<br *ngIf="!showCreate && !showUnlock && !showSearch && !showCreateHorse && !showProfile">
 
-		<div *ngIf="!showCreate && !showUnlock && !showSearch && !showCreateHorse" class="center-div">
+		<div *ngIf="!showCreate && !showUnlock && !showSearch && !showCreateHorse && !showProfile" class="center-div">
 			<label class="label">Bienvenu sur la page d'administration !</label><br>			
 		</div>
 
@@ -49,8 +47,8 @@
 			<app-page-create-horse></app-page-create-horse>	
 		</div>
 
-		<div *ngIf="showUnlock" class="center-div">
-			<label class="label">Déblocage d'un utilisateur</label><br>			
+		<div *ngIf="showProfile" class="center-div">
+			<app-page-profile></app-page-profile>				
 		</div>
 
 	</body>

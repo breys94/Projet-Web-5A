@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { userResponse } from './response_api/userResponse';
+import { horseResponse } from './response_api/horseResponse';
 import { Observable } from 'rxjs';
 
 
@@ -38,6 +39,11 @@ export class UserService {
   updateUser(id:number, email:string, firstName:string, lastName:string, phone:string){
     let jsonToSend = {id:id, email:email, firstName:firstName, lastName:lastName, phone:phone}
     return this.httpClient.post("http://localhost:8080/rest/user/api/updateUser/", jsonToSend)
+  }
+
+  addHorse(name:string, sexe:string, age:number, weight:number, height:number, nbWins:number, nbLoses:number){
+    let jsonToSend = {name:name, sexe:sexe, age:age, weight:weight, height:height, nbWins:nbWins, nbLoses:nbLoses}
+    return this.httpClient.post("http://localhost:8080/rest/horse/api/addHorse/", jsonToSend)
   }
 
 }

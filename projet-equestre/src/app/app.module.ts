@@ -17,10 +17,10 @@ import { HomepageAdminComponent } from './homepage-admin/homepage-admin.componen
 import { PageSearchUserComponent } from './page-search-user/page-search-user.component';
 import { PageCreateUserComponent } from './page-create-user/page-create-user.component';
 import { PageUnlockUserComponent } from './page-unlock-user/page-unlock-user.component';
-import { PageUpdateUserComponent } from './page-update-user/page-update-user.component';
 import { ShowuserComponent } from './showuser/showuser.component';
-import { CreateHorseComponent } from './create-horse/create-horse.component';
-import { PageCreateHorseComponent } from './page-create-horse/page-create-horse.component'
+import { PageCreateHorseComponent } from './page-create-horse/page-create-horse.component';
+import { PageProfileComponent } from './page-profile/page-profile.component';
+import { HomepageMonitorComponent } from './homepage-monitor/homepage-monitor.component'
 
 
 @NgModule({
@@ -38,10 +38,10 @@ import { PageCreateHorseComponent } from './page-create-horse/page-create-horse.
     PageSearchUserComponent,
     PageCreateUserComponent,
     PageUnlockUserComponent,
-    PageUpdateUserComponent,
     ShowuserComponent,
-    CreateHorseComponent,
-    PageCreateHorseComponent
+    PageCreateHorseComponent,
+    PageProfileComponent,
+    HomepageMonitorComponent
   ],
   imports: [
     BrowserModule,

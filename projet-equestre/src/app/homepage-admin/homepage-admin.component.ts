@@ -13,6 +13,7 @@ export class HomepageAdminComponent implements OnInit {
   showSearch = false;
   showUnlock = false;
   showCreateHorse = false;
+  showProfile = false;
 
   constructor(private authService: AuthService, private router: Router ) { }
 
@@ -22,6 +23,7 @@ export class HomepageAdminComponent implements OnInit {
   loadCreatePage(){
     this.showCreate = true;
     this.showSearch = false;
+    this.showProfile = false;
     this.showUnlock= false;
     this.showCreateHorse = false;
   }
@@ -30,13 +32,15 @@ export class HomepageAdminComponent implements OnInit {
     this.showCreate = false;
     this.showSearch = true;
     this.showUnlock= false;
+    this.showProfile = false;
     this.showCreateHorse = false;
   }
 
   loadUnlockPage(){
     this.showCreate = false;
     this.showSearch = false;
-    this.showUnlock= true;
+    this.showUnlock= true;    
+    this.showProfile = false;
     this.showCreateHorse = false;
   }
 
@@ -44,7 +48,16 @@ export class HomepageAdminComponent implements OnInit {
     this.showCreate = false;
     this.showSearch = false;
     this.showUnlock= false;
+    this.showProfile = false;
     this.showCreateHorse = true;
   }
+
+  loadProfile(){
+    this.showCreate = false;
+    this.showSearch = false;
+    this.showUnlock= false;
+    this.showCreateHorse = false;
+    this.showProfile = true;
+  }  
 
 }

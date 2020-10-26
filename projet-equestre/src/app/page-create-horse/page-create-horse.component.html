@@ -1,1 +1,62 @@
-<p>page-create-horse works!</p>
+<br>
+<div class="card text-center" style="border-radius: 40px 40px 40px 40px;">
+    <div class="card-header">
+        <h2 style="text-align: center;">Créer une fiche Cheval</h2>
+    </div>
+
+    <div class="card-body">
+
+        <form [formGroup]="createForm" (ngSubmit)="create()">
+
+                <div *ngIf="!valid" style="color: red;">
+                    Tous les champs sont obligatoires
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <select id="type" class="form-control" formControlName="sexe">
+                        <option selected>MALE</option>
+                        <option>FEMELLE</option>
+                      </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group col-md-6">
+                        <label for="name">Nom</label>
+                        <input type="text" class="form-control" id="name" placeholder="Nom" formControlName="name">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="age">Age</label>
+                        <input type="text" class="form-control" id="age" placeholder="Age" formControlName="age">
+                    </div>
+                    
+                    <div class="form-group col-md-6">
+                        <label for="weight">Poids (en Kg)</label>
+                        <input type="weight" class="form-control" id="weight" placeholder="Poids" formControlName="weight">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="height">Taille (en cm)</label>
+                        <input type="height" class="form-control" id="height" placeholder="Taille" formControlName="height">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="wins">Nombre de victoire</label>
+                        <input type="text" class="form-control" id="wins" placeholder="0" formControlName="wins">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="loses">Nombre de défaites</label>
+                        <input type="text" class="form-control" id="loses" placeholder="0" formControlName="loses">
+                    </div>
+                
+                </div>
+
+            <button type="submit" class="btn btn-primary">Validation</button>
+          </form>
+    </div>
+</div>
+

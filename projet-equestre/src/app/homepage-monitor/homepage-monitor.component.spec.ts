@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PageUpdateUserComponent } from './page-update-user.component';
+import { HomepageMonitorComponent } from './homepage-monitor.component';
 
-describe('PageUpdateUserComponent', () => {
-  let component: PageUpdateUserComponent;
-  let fixture: ComponentFixture<PageUpdateUserComponent>;
+describe('HomepageMonitorComponent', () => {
+  let component: HomepageMonitorComponent;
+  let fixture: ComponentFixture<HomepageMonitorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PageUpdateUserComponent ]
+      declarations: [ HomepageMonitorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PageUpdateUserComponent);
+    fixture = TestBed.createComponent(HomepageMonitorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

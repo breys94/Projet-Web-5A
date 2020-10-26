@@ -57,6 +57,7 @@ export class ConnexionComponent implements OnInit {
           console.log(userResponse.role)
           if(userResponse.role === "SUPERUSER") this.router.navigateByUrl('/super_user/' + this.loginForm.get("email").value);
           if(userResponse.role === "ADMIN") this.router.navigateByUrl('/admin/' + this.loginForm.get("email").value);
+          if(userResponse.role === "USER_MONITOR") this.router.navigateByUrl('/monitor/' + this.loginForm.get("email").value);
         })
       }
       if (userResponse === 4){

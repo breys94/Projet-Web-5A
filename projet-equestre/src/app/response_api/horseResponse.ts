@@ -1,4 +1,4 @@
-export interface userResponse {
+export interface horseResponse {
     id:number
     idCavalier:number
     sexe:string

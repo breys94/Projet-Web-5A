@@ -1,13 +1,7 @@
 package com.breys.breysequestre.horse;
 
-import io.swagger.models.auth.In;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "HORSE")
-public class Horse {
-
+public class HorseDTO implements Comparable<HorseDTO> {
     private Integer id;
     private Integer idOwner;
     private Integer age;
@@ -18,9 +12,6 @@ public class Horse {
     private Integer nbWins;
     private Integer nbLoses;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "HORSE_ID")
     public Integer getId() {
         return id;
     }
@@ -29,7 +20,6 @@ public class Horse {
         this.id = id;
     }
 
-    @Column(name = "ID_OWNER", nullable = true)
     public Integer getIdOwner() {
         return idOwner;
     }
@@ -38,7 +28,6 @@ public class Horse {
         this.idOwner = idOwner;
     }
 
-    @Column(name = "AGE", nullable = false)
     public Integer getAge() {
         return age;
     }
@@ -47,7 +36,6 @@ public class Horse {
         this.age = age;
     }
 
-    @Column(name = "NAME", nullable = false, unique = true)
     public String getName() {
         return name;
     }
@@ -56,7 +44,6 @@ public class Horse {
         this.name = name;
     }
 
-    @Column(name = "SEXE", nullable = false)
     public String getSexe() {
         return sexe;
     }
@@ -65,34 +52,6 @@ public class Horse {
         this.sexe = sexe;
     }
 
-    @Column(name = "NBWINS", nullable = false)
-    public Integer getNbWins() {
-        return nbWins;
-    }
-
-    public void setNbWins(Integer nbWins) {
-        this.nbWins = nbWins;
-    }
-
-    @Column(name = "NBLOSES", nullable = false)
-    public Integer getNbLoses() {
-        return nbLoses;
-    }
-
-    public void setNbLoses(Integer nbLoses) {
-        this.nbLoses = nbLoses;
-    }
-
-    @Column(name = "WEIGHT", nullable = false)
-    public Float getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Float weight) {
-        this.weight = weight;
-    }
-
-    @Column(name = "HEIGHT", nullable = false)
     public Float getHeight() {
         return height;
     }
@@ -101,4 +60,32 @@ public class Horse {
         this.height = height;
     }
 
+    public Float getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Float weight) {
+        this.weight = weight;
+    }
+
+    public Integer getNbWins() {
+        return nbWins;
+    }
+
+    public void setNbWins(Integer nbWins) {
+        this.nbWins = nbWins;
+    }
+
+    public Integer getNbLoses() {
+        return nbLoses;
+    }
+
+    public void setNbLoses(Integer nbLoses) {
+        this.nbLoses = nbLoses;
+    }
+
+    @Override
+    public int compareTo(HorseDTO o) {
+        return 0;
+    }
 }

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<form [formGroup]="updateForm" style="border-radius: 40px 40px 40px 40px;" (ngSubmit)="updateUser()">
+			<div class="card text-center">
+				<div class="card-header">
+					<h2>{{ user.firstName }} {{ user.lastName }}</h2>
+				</div>
+				<div class="card-body" style="border-radius: 0px 0px 40px 40px;">
+				  <div class="col-xl-6 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-2">
+						<label>Email</label>
+						<input [style.color]="ok === true ? 'green' : conflictMail === true ? 'red' : 'black'" type="text" class="form-control" formControlName="email"><br>
+						<div *ngIf="formControls.email.errors" class="champs_requis"><font color="red">Ce champ doit respecter le format email</font></div>
+						
+						<label>Téléphone</label>
+						<input [style.color]="ok === true ? 'green' : conflictPhone === true ? 'red' : 'black'" type="text" class="form-control" formControlName="phone"><br>
+						<div *ngIf="formControls.phone.errors" class="champs_requis"><font color="red">Ce champ doit être un numéro de téléphone</font></div>
+
+                        <label>Nom</label>
+						<input [style.color]="ok === true ? 'green' : 'black'" type="text" class="form-control" formControlName="lastName"><br>
+						
+						<label>Prénom</label>
+                        <input [style.color]="ok === true ? 'green' : 'black'" type="text" class="form-control" formControlName="firstName"><br>
+
+                        <label>Licence</label>
+                        <input type="text" class="form-control" formControlName="licence"><br>
+                  </div>
+                  
+                  <button type="submit" class="btn btn-dark" >Modifier</button>
+                </div>
+			</div>  
+		</form>
+	</body>
+</html>
