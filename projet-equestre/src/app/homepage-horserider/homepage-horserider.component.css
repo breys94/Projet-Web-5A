@@ -1,6 +1,6 @@
 html, body {
     background-color:#EBEBEB;
-  	height : 100%;
+	height : 100%;
 }
 
 .center-div
@@ -10,6 +10,10 @@ html, body {
 }
 
 .label {
-  font-size: xx-large;
-text-align: center;
+    font-size: xx-large;
+	text-align: center;
 }
+
+li {
+  cursor: pointer;
+  }

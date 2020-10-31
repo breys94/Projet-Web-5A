@@ -1,6 +1,5 @@
 package com.breys.breysequestre.horse;
 
-
 public class HorseDTO implements Comparable<HorseDTO> {
     private Integer id;
     private Integer idOwner;

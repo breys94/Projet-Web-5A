@@ -1,6 +1,5 @@
 package com.breys.breysequestre.horse;
 
-import com.breys.breysequestre.User.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

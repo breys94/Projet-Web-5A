@@ -20,8 +20,15 @@ import { PageUnlockUserComponent } from './page-unlock-user/page-unlock-user.com
 import { ShowuserComponent } from './showuser/showuser.component';
 import { PageCreateHorseComponent } from './page-create-horse/page-create-horse.component';
 import { PageProfileComponent } from './page-profile/page-profile.component';
-import { HomepageMonitorComponent } from './homepage-monitor/homepage-monitor.component'
-
+import { HomepageMonitorComponent } from './homepage-monitor/homepage-monitor.component';
+import { PageCreateRepriseComponent } from './page-create-reprise/page-create-reprise.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { HomepageHorseriderComponent } from './homepage-horserider/homepage-horserider.component';
+import { PageSearchRepriseComponent } from './page-search-reprise/page-search-reprise.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +48,10 @@ import { HomepageMonitorComponent } from './homepage-monitor/homepage-monitor.co
     ShowuserComponent,
     PageCreateHorseComponent,
     PageProfileComponent,
-    HomepageMonitorComponent
+    HomepageMonitorComponent,
+    PageCreateRepriseComponent,
+    HomepageHorseriderComponent,
+    PageSearchRepriseComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,8 +59,15 @@ import { HomepageMonitorComponent } from './homepage-monitor/homepage-monitor.co
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
-  providers: [],
+  providers: [
+    MatDatepickerModule
+  ],
   bootstrap: [AppComponent]
 })
 

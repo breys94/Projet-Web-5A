@@ -46,4 +46,9 @@ export class UserService {
     return this.httpClient.post("http://localhost:8080/rest/horse/api/addHorse/", jsonToSend)
   }
 
+  addReprise(idMonitor:number, title:string, level:string, beginDate:string, endDate:string, nbMaxHorseRider:number){
+    let jsonToSend = {"idMonitor":idMonitor,"beginDate":beginDate, "endDate":endDate, "nbHorseRider":0, "nbMaxHorseRider":nbMaxHorseRider, "level":level, "title":title}
+    return this.httpClient.post("http://localhost:8080/rest/reprise/api/addReprise/", jsonToSend)
+  }
+
 }

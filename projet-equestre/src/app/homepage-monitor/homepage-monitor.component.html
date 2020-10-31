@@ -14,16 +14,29 @@
 				  <a class="nav-link">Créer une reprise</a>
 				</li>
 				<li class="nav-item" (click)="loadAssignPage()">
-				  <a class="nav-link">Assigner des chevaux</a>
+				  <a class="nav-link">Liste de mes cours</a>
 				</li>
 			  </ul>
 			  <button (click)="loadProfile()" class="btn btn-outline-success my-2 my-sm-0">Profil</button>
 			</div>
-          </nav>
+		  </nav>
+
+		  <br *ngIf="!showCreate && !showProfile">
+		  <br *ngIf="!showCreate && !showProfile">
+		  <br *ngIf="!showCreate && !showProfile">
+		  <br *ngIf="!showCreate && !showProfile">
+
+		  <div *ngIf="!showCreate && !showProfile" class="center-div">
+			<label class="label">Bienvenu sur la page des moniteurs !</label><br>			
+		  </div>
+		  
+		  <div *ngIf="showCreate" class="center-div">
+			<app-page-create-reprise></app-page-create-reprise>				
+		  </div>
           
           <div *ngIf="showProfile" class="center-div">
 			<app-page-profile></app-page-profile>				
-		</div>
+		  </div>
 
     </body>
 </html>

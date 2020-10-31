@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	</head>
+	<body class="body">
+
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="#">Breys-Equestre</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+			  <span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+			  <ul class="navbar-nav mr-auto">
+				<li class="nav-item active" (click)="loadSearchPage()">
+				  <a class="nav-link">Chercher un cours</a>
+				</li>
+			  </ul>
+			  <button (click)="loadProfile()" class="btn btn-outline-success my-2 my-sm-0">Profil</button>
+			</div>
+		  </nav>
+		
+		<br *ngIf="">
+		<br *ngIf="">
+		<br *ngIf="">
+		<br *ngIf="">
+
+		<div *ngIf="" class="center-div">
+			<label class="label">Bienvenu sur la page des cavaliers !</label><br>			
+		</div>
+
+		<div *ngIf="showProfile" class="center-div">
+			<app-page-profile></app-page-profile>				
+		</div>
+
+	</body>
+</html>
+

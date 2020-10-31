@@ -10,6 +10,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { HomepageSuperuserComponent } from './homepage-superuser/homepage-superuser.component'
 import { HomepageAdminComponent } from './homepage-admin/homepage-admin.component'
 import { HomepageMonitorComponent } from './homepage-monitor/homepage-monitor.component'
+import { HomepageHorseriderComponent } from './homepage-horserider/homepage-horserider.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'connexion'},
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'change_password/:email', component: ChangePasswordComponent},
   { path: 'super_user/:email', component: HomepageSuperuserComponent},
   { path: 'admin/:email', component: HomepageAdminComponent},
-  { path: 'monitor/:email', component: HomepageMonitorComponent}
+  { path: 'monitor/:email', component: HomepageMonitorComponent},
+  { path: 'user/:email', component: HomepageHorseriderComponent}
 ];
 
 @NgModule({

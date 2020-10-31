@@ -53,6 +53,7 @@ export class PageProfileComponent implements OnInit {
          alert("Modification effectuée")
          if(this.user.role === "ADMIN") this.router.navigateByUrl('/admin/' + this.updateForm.get("email").value);
          if(this.user.role === "USER_MONITOR") this.router.navigateByUrl('/monitor/' + this.updateForm.get("email").value);
+         if(this.user.role === "USER") this.router.navigateByUrl('/horserider/' + this.updateForm.get("email").value);
        }
        if (userResponse === 1){
          this.conflictMail = true

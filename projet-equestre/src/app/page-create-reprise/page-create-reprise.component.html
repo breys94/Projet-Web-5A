@@ -1,0 +1,55 @@
+<html>
+    <body>
+        <br>
+        <div class="card text-center" style="border-radius: 40px 40px 40px 40px;">
+            <div class="card-header">
+                <h2 style="text-align: center;">Créer un cours</h2>
+            </div>
+
+            <div class="card-body">
+                <form [formGroup]="createForm" (ngSubmit)="create()">
+                    <div class="col-xl-6 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-2">
+
+                        <label for="title">Titre (Facultatif)</label>
+                        <input type="text" class="form-control" id="title" placeholder="Titre" formControlName="title"><br>
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Date du cours</mat-label>
+                            <mat-date-range-input [formGroup]="createForm" [rangePicker]="picker">
+                                <input matStartDate formControlName="beginDate" placeholder="Début">
+                                <input matEndDate formControlName="endDate" placeholder="Fin">
+                            </mat-date-range-input>
+                            <div *ngIf="isSubmitted && formControls.beginDate.errors" class="help-block">
+                                <div *ngIf="formControls.beginDate.errors.required" class="champs_requis">
+                                    <font color="red">Champs Requis</font>
+                                </div><br>
+                            </div>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-date-range-picker #picker></mat-date-range-picker>
+                        </mat-form-field><br>
+
+                        <select id="type" class="form-control" formControlName="level">
+                            <option selected>Galop 1</option>
+                            <option>Galop 2</option>
+                            <option>Galop 3</option>
+                            <option>Galop 4</option>
+                            <option>Galop 5</option>
+                            <option>Galop 6</option>
+                            <option>Galop 7</option>
+                        </select><br>
+
+                        <label for="nbHorseRider">Nombre de participant</label>
+                        <input type="text" class="form-control" id="nbHorseRider" placeholder="Nombre d'élèves" formControlName="nbHorseRider">
+                        <div *ngIf="isSubmitted && formControls.nbHorseRider.errors" class="help-block">
+                            <div *ngIf="formControls.nbHorseRider.errors.required" class="champs_requis">
+                                <font color="red">Champs Requis</font>
+                            </div><br>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Validation</button>
+                    </div>
+                </form>
+            </div>
+        </div>        
+    </body>
+</html>
