@@ -8,7 +8,7 @@ import java.util.Date;
 public class Reprise {
 
     private Integer id;
-    private Integer idMonitor;
+    private String emailMonitor;
     private Date beginDate;
     private Date endDate;
     private Integer nbHorseRider;
@@ -27,13 +27,13 @@ public class Reprise {
         this.id = id;
     }
 
-    @Column(name = "ID_MONITOR", nullable = false)
-    public Integer getIdMonitor() {
-        return idMonitor;
+    @Column(name = "EMAIL_MONITOR", nullable = false)
+    public String getEmailMonitor() {
+        return emailMonitor;
     }
 
-    public void setIdMonitor(Integer idMonitor) {
-        this.idMonitor = idMonitor;
+    public void setEmailMonitor(String emailMonitor) {
+        this.emailMonitor = emailMonitor;
     }
 
     @Column(name = "BEGIN_DATE", nullable = true)

@@ -1,1 +1,38 @@
-<p>page-search-reprise works!</p>
+<br>
+
+<div *ngIf="!showReprise">
+  <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">@</span>
+      </div>
+      <input (keyup)=getSearch($event) type="text" class="form-control" placeholder="Rechercher niveau" aria-label="RechercherLevel" aria-describedby="basic-addon1">
+
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon2">@</span>
+      </div>
+      <input (keyup)=getSearch($event) type="text" class="form-control" placeholder="Rechercher moniteur" aria-label="RechercherMonitor" aria-describedby="basic-addon2">
+  </div>
+
+  <div class="scroll" style="border-radius: 40px 40px 40px 40px;">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Titre</th>
+          <th scope="col">Email Moniteur</th>
+          <th scope="col">Niveau du cours</th>
+          <th scope="col">Nombre de personne max</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reprise of listReprises" (click)="onSelect(reprise)">
+          <td>{{reprise.title}}</td>
+          <td>{{reprise.emailMonitor}}</td>
+          <td>{{reprise.level}}</td>
+          <td>{{reprise.nbMaxHorseRider}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-show-reprise (valid)="onValid($event)" [reprise]="selectedReprise" *ngIf="showReprise"></app-show-reprise>

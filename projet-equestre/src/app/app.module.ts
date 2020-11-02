@@ -29,6 +29,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HomepageHorseriderComponent } from './homepage-horserider/homepage-horserider.component';
 import { PageSearchRepriseComponent } from './page-search-reprise/page-search-reprise.component';
+import { ShowRepriseComponent } from './show-reprise/show-reprise.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { PageSearchRepriseComponent } from './page-search-reprise/page-search-re
     PageCreateRepriseComponent,
     HomepageHorseriderComponent,
     PageSearchRepriseComponent,
+    ShowRepriseComponent,
   ],
   imports: [
     BrowserModule,

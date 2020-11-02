@@ -5,14 +5,14 @@ import java.util.Date;
 public class RepriseDTO implements Comparable<RepriseDTO> {
 
     private Integer id;
-    private Integer idMonitor;
+    private String emailMonitor;
 
-    public Integer getIdMonitor() {
-        return idMonitor;
+    public String getEmailMonitor() {
+        return emailMonitor;
     }
 
-    public void setIdMonitor(Integer idMonitor) {
-        this.idMonitor = idMonitor;
+    public void setEmailMonitor(String emailMonitor) {
+        this.emailMonitor = emailMonitor;
     }
 
     private Date beginDate;

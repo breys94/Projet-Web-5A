@@ -20,13 +20,17 @@
 			</div>
 		  </nav>
 		
-		<br *ngIf="">
-		<br *ngIf="">
-		<br *ngIf="">
-		<br *ngIf="">
+		<br *ngIf="!showProfile && !showSearch">
+		<br *ngIf="!showProfile && !showSearch">
+		<br *ngIf="!showProfile && !showSearch">
+		<br *ngIf="!showProfile && !showSearch">
 
-		<div *ngIf="" class="center-div">
+		<div *ngIf="!showProfile && !showSearch" class="center-div">
 			<label class="label">Bienvenu sur la page des cavaliers !</label><br>			
+        </div>
+        
+        <div *ngIf="showSearch" class="center-div">
+			<app-page-search-reprise></app-page-search-reprise>				
 		</div>
 
 		<div *ngIf="showProfile" class="center-div">

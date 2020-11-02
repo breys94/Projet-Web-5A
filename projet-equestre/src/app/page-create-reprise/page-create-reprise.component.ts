@@ -30,7 +30,7 @@ export class PageCreateRepriseComponent implements OnInit {
       nbHorseRider: ['1', Validators.compose([Validators.required, Validators.pattern("^[0-9]{1,2}")])],
       });
       this.email = this.route.snapshot.params['email']
-      this.UserService.getUser(this.email).subscribe(data => this.idUser = data.id);
+      //this.UserService.getUser(this.email).subscribe(data => this.idUser = data.id);
   }
 
   get formControls() { 
@@ -49,7 +49,7 @@ export class PageCreateRepriseComponent implements OnInit {
     let level = this.createForm.get("level").value
     let nbHr = this.createForm.get("nbHorseRider").value
 
-    this.UserService.addReprise(this.idUser, title, level, beginDateformatted, endDateformatted, nbHr).subscribe(
+    this.UserService.addReprise(this.email, title, level, beginDateformatted, endDateformatted, nbHr).subscribe(
       () => {
         console.log(console.log("Succès"));
         alert("Création réussie")

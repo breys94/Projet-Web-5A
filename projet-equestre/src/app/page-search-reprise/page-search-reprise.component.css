@@ -1,0 +1,27 @@
+html, body {
+    background-color:#EBEBEB;
+	height : 100%;
+}
+
+.center-div
+{
+  margin: 0 auto;
+  width: 600px;
+}
+
+.label {
+    font-size: xx-large;
+	text-align: center;
+}
+
+li {
+  cursor: pointer;
+}
+
+.scroll {
+  background-color: white;
+  top: 20px;
+  bottom: 20px;
+  height: 400px;
+  overflow: auto;
+}

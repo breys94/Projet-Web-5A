@@ -39,8 +39,8 @@ public class RepriseServiceImpl implements RepriseService {
     }
 
     @Override
-    public List<Reprise> findRepriseByIdMonitor(Integer idMonitor) {
-        return repriseDao.findRepriseByIdMonitor(idMonitor);
+    public List<Reprise> findRepriseByEmailMonitor(String emailMonitor) {
+        return repriseDao.findRepriseByEmailMonitor(emailMonitor);
     }
 
     @Override

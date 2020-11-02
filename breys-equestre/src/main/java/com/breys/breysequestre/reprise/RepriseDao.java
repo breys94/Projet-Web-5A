@@ -8,6 +8,6 @@ public interface RepriseDao extends JpaRepository<Reprise, Integer> {
 
     public Reprise findRepriseById(Integer id);
     public Reprise findRepriseByTitle(String title);
-    public List<Reprise> findRepriseByIdMonitor(Integer idMonitor);
+    public List<Reprise> findRepriseByEmailMonitor(String emailMonitor);
 
 }

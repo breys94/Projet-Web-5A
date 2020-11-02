@@ -1,5 +1,8 @@
 package com.breys.breysequestre.reprise;
 
+import com.breys.breysequestre.affiliation.Affiliation;
+import com.breys.breysequestre.affiliation.AffiliationDTO;
+import com.breys.breysequestre.affiliation.AffiliationServiceImpl;
 import com.breys.breysequestre.horse.Horse;
 import com.breys.breysequestre.horse.HorseDTO;
 import org.modelmapper.ModelMapper;
@@ -17,6 +20,9 @@ public class RepriseRestController {
 
     @Autowired
     private RepriseServiceImpl repriseService;
+
+    @Autowired
+    private AffiliationServiceImpl affiliationService;
 
     private Reprise reprise;
 
@@ -43,6 +49,19 @@ public class RepriseRestController {
         }
         return listToReturn;
     }
+    @CrossOrigin
+    @PostMapping("/inscriptionReprise")
+    public ResponseEntity<AffiliationDTO> inscriptionReprise(@RequestBody AffiliationDTO affiliationDTORequest){
+
+        Affiliation affiliationRequest = mapAffiliationDTOToAffiliation(affiliationDTORequest);
+        Affiliation affiliationResponse = affiliationService.saveAffiliation(affiliationRequest);
+        if (affiliationResponse != null) {
+            AffiliationDTO affiliationDTO = mapAffiliationToAffiliationDTO(affiliationResponse);
+            return new ResponseEntity<AffiliationDTO>(affiliationDTO, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<AffiliationDTO>(HttpStatus.NOT_MODIFIED);
+    }
+    
 
     private RepriseDTO mapRepriseToRepriseDTO(Reprise reprise) {
         ModelMapper mapper = new ModelMapper();
@@ -54,6 +73,19 @@ public class RepriseRestController {
         ModelMapper mapper = new ModelMapper();
         Reprise reprise = mapper.map(repriseDTO, Reprise.class);
         return reprise;
+    }
+
+
+    private AffiliationDTO mapAffiliationToAffiliationDTO(Affiliation affiliation) {
+        ModelMapper mapper = new ModelMapper();
+        AffiliationDTO affiliationDTO = mapper.map(affiliation, AffiliationDTO.class);
+        return affiliationDTO;
+    }
+
+    private Affiliation mapAffiliationDTOToAffiliation(AffiliationDTO affiliationDTO) {
+        ModelMapper mapper = new ModelMapper();
+        Affiliation affiliation = mapper.map(affiliationDTO, Affiliation.class);
+        return affiliation;
     }
     
 }

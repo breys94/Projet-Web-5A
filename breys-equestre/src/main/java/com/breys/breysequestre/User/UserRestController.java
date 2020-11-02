@@ -160,6 +160,19 @@ public class UserRestController {
     }
 
     @CrossOrigin
+    @GetMapping("/searchUserById")
+    public ResponseEntity<UserDTO> listUserById(@RequestParam("id") Integer id) {
+
+        user = userService.findUserById(id);
+
+        if (user != null) {
+            UserDTO userDTO = mapUserToUserDTO(user);
+            return new ResponseEntity<UserDTO>(userDTO, HttpStatus.OK);
+        }
+        return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
+    }
+
+    @CrossOrigin
     @GetMapping("/searchUsersRole")
     public List<UserDTO> listUsersRole(@RequestParam("role") String role) {
         List<User> listUser = userService.findUserByRole(role);

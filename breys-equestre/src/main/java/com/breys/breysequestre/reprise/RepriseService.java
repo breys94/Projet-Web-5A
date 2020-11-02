@@ -16,7 +16,7 @@ public interface RepriseService {
 
     public List<Reprise> findReprises();
 
-    public List<Reprise> findRepriseByIdMonitor(Integer idMonitor);
+    public List<Reprise> findRepriseByEmailMonitor(String emailMonitor);
 
     public Reprise findRepriseById(Integer repriseId);
 

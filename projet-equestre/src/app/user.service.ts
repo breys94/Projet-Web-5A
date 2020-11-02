@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { userResponse } from './response_api/userResponse';
 import { horseResponse } from './response_api/horseResponse';
+import { repriseResponse } from './response_api/repriseResponse';
 import { Observable } from 'rxjs';
 
 
@@ -15,6 +16,11 @@ export class UserService {
   getUser(login:string):Observable<userResponse>{
     let param = new HttpParams().set("login", login)
     return this.httpClient.get<userResponse>("http://localhost:8080/rest/user/api/searchUser/", {params:param})
+  }
+
+  getUserById(id:string):Observable<userResponse>{
+    let param = new HttpParams().set("id", id)
+    return this.httpClient.get<userResponse>("http://localhost:8080/rest/user/api/searchUserById/", {params:param})
   }
 
   updatePassword(email:string, password:string){
@@ -46,9 +52,13 @@ export class UserService {
     return this.httpClient.post("http://localhost:8080/rest/horse/api/addHorse/", jsonToSend)
   }
 
-  addReprise(idMonitor:number, title:string, level:string, beginDate:string, endDate:string, nbMaxHorseRider:number){
-    let jsonToSend = {"idMonitor":idMonitor,"beginDate":beginDate, "endDate":endDate, "nbHorseRider":0, "nbMaxHorseRider":nbMaxHorseRider, "level":level, "title":title}
+  addReprise(emailMonitor:string, title:string, level:string, beginDate:string, endDate:string, nbMaxHorseRider:number){
+    let jsonToSend = {"emailMonitor":emailMonitor,"beginDate":beginDate, "endDate":endDate, "nbHorseRider":0, "nbMaxHorseRider":nbMaxHorseRider, "level":level, "title":title}
     return this.httpClient.post("http://localhost:8080/rest/reprise/api/addReprise/", jsonToSend)
+  }
+
+  getReprises():Observable<repriseResponse>{
+    return this.httpClient.get<repriseResponse>("http://localhost:8080/rest/reprise/api/searchReprises/")
   }
 
 }

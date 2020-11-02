@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<body>
+        <form>
+            <div class="card text-center" style="border-radius: 40px 40px 40px 40px;">
+                <div class="card-header">
+					<h2>Cours de {{ reprise.emailMonitor }}</h2>
+                </div>
+                <div class="card-body" style="border-radius: 0px 0px 40px 40px; text-align: left;">
+
+                    <div class="form-group row">
+                        <label for="title" class="col-sm-5 col-form-label"><U>Titre</U></label>
+                        <div class="col-sm-5">
+                            <input type="text" readonly class="form-control-plaintext" id="title" value="{{ reprise.title }}">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-5 col-form-label"><U>Email du moniteur </U></label>
+                        <div class="col-sm-5">
+                            <input type="text" readonly class="form-control-plaintext" id="email" value="{{ reprise.emailMonitor }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="beginDate" class="col-sm-5 col-form-label"><U>Date de début</U></label>
+                        <div class="col-sm-5">
+                            <input type="text" readonly class="form-control-plaintext" id="beginDate" value="{{ beginDate }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="endDate" class="col-sm-5 col-form-label"><U>Date de fin</U></label>
+                        <div class="col-sm-5">
+                            <input type="text" readonly class="form-control-plaintext" id="endDate" value="{{ endDate }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="level" class="col-sm-5 col-form-label"><U>Niveau du cours</U></label>
+                        <div class="col-sm-5">
+                            <input type="text" readonly class="form-control-plaintext" id="level" value="{{ reprise.level }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="nbMaxHorseRider" class="col-sm-5 col-form-label"><U>Nombre de participant maximum</U></label>
+                        <div class="col-sm-5">
+                            <input type="text" readonly class="form-control-plaintext" id="nbMaxHorseRider" value="{{ reprise.nbMaxHorseRider }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="nbHorseRider" class="col-sm-5 col-form-label"><U>Nombre de participant actuel</U></label>
+                        <div class="col-sm-5">
+                            <input type="text" readonly class="form-control-plaintext" id="nbHorseRider" value="{{ reprise.nbHorseRider }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div style="text-align : center ; ">
+                <button style="margin-right: 12px;" (click)="goBack()" type="button" class="btn btn-outline-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                    Retour
+                </button>
+                <button style="margin-left: 12px;" (click)="inscription()" type="button" class="btn btn-outline-secondary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                    S'inscrire
+                </button>
+            </div>
+        </form>
+    </body>
+</html>
