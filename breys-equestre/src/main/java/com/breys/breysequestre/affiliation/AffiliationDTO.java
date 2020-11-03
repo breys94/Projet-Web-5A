@@ -4,7 +4,7 @@ package com.breys.breysequestre.affiliation;
 public class AffiliationDTO implements Comparable<AffiliationDTO> {
 
     private Integer id;
-    private Integer idUser;
+    private String emailUser;
     private Integer idReprise;
 
     public Integer getId() {
@@ -15,12 +15,12 @@ public class AffiliationDTO implements Comparable<AffiliationDTO> {
         this.id = id;
     }
 
-    public Integer getIdUser() {
-        return idUser;
+    public String getEmailUser() {
+        return emailUser;
     }
 
-    public void setIdUser(Integer idUser) {
-        this.idUser = idUser;
+    public void setEmailUser(String emailUser) {
+        this.emailUser = emailUser;
     }
 
     public Integer getIdReprise() {

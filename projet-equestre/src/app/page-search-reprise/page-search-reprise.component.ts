@@ -25,11 +25,22 @@ export class PageSearchRepriseComponent implements OnInit {
     );
   }
 
-  getSearch(item){
+  getSearchLevel(item){
     this.listReprises = this.listReprisesInit
     let tmpList = []
     for (let i = 0; i < this.listReprises.length; i++) {
-      if(this.listReprises[i].email.indexOf(item.target.value) !== -1) {
+      if(this.listReprises[i].level.indexOf(item.target.value) !== -1) {
+        tmpList.push(this.listReprises[i])
+      }
+    }
+    this.listReprises = tmpList
+  }
+
+  getSearchMonitor(item){
+    this.listReprises = this.listReprisesInit
+    let tmpList = []
+    for (let i = 0; i < this.listReprises.length; i++) {
+      if(this.listReprises[i].emailMonitor.indexOf(item.target.value) !== -1) {
         tmpList.push(this.listReprises[i])
       }
     }

@@ -30,6 +30,8 @@ import { MatInputModule } from '@angular/material/input';
 import { HomepageHorseriderComponent } from './homepage-horserider/homepage-horserider.component';
 import { PageSearchRepriseComponent } from './page-search-reprise/page-search-reprise.component';
 import { ShowRepriseComponent } from './show-reprise/show-reprise.component';
+import { ShowRepriseByMonitorComponent } from './show-reprise-by-monitor/show-reprise-by-monitor.component';
+import { ShowRepriseAssignComponent } from './show-reprise-assign/show-reprise-assign.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { ShowRepriseComponent } from './show-reprise/show-reprise.component';
     HomepageHorseriderComponent,
     PageSearchRepriseComponent,
     ShowRepriseComponent,
+    ShowRepriseByMonitorComponent,
+    ShowRepriseAssignComponent,
   ],
   imports: [
     BrowserModule,

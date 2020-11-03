@@ -49,6 +49,7 @@ public class RepriseRestController {
         }
         return listToReturn;
     }
+    
     @CrossOrigin
     @PostMapping("/inscriptionReprise")
     public ResponseEntity<AffiliationDTO> inscriptionReprise(@RequestBody AffiliationDTO affiliationDTORequest){
@@ -56,12 +57,27 @@ public class RepriseRestController {
         Affiliation affiliationRequest = mapAffiliationDTOToAffiliation(affiliationDTORequest);
         Affiliation affiliationResponse = affiliationService.saveAffiliation(affiliationRequest);
         if (affiliationResponse != null) {
+
+            Reprise reprise = repriseService.findRepriseById(affiliationDTORequest.getIdReprise());
+            reprise.setNbHorseRider(reprise.getNbHorseRider() + 1);
+            repriseService.saveReprise(reprise);
+
             AffiliationDTO affiliationDTO = mapAffiliationToAffiliationDTO(affiliationResponse);
             return new ResponseEntity<AffiliationDTO>(affiliationDTO, HttpStatus.CREATED);
         }
         return new ResponseEntity<AffiliationDTO>(HttpStatus.NOT_MODIFIED);
     }
-    
+
+    @CrossOrigin
+    @GetMapping("/searchInscriptions")
+    public List<AffiliationDTO> listInscription() {
+        List<Affiliation> listAffiliation = affiliationService.findAffiliations();
+        List<AffiliationDTO> listToReturn = new ArrayList<>();
+        for(Affiliation affiliation : listAffiliation){
+            listToReturn.add(mapAffiliationToAffiliationDTO(affiliation));
+        }
+        return listToReturn;
+    }
 
     private RepriseDTO mapRepriseToRepriseDTO(Reprise reprise) {
         ModelMapper mapper = new ModelMapper();

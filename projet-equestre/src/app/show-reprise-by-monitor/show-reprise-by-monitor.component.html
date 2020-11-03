@@ -1,0 +1,27 @@
+<br>
+
+<div *ngIf="!showReprise">
+  <div class="scroll" style="border-radius: 40px 40px 40px 40px;">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Titre</th>
+          <th scope="col">Niveau du cours</th>
+          <th scope="col">Nombre d'inscrits</th>
+          <th scope="col">Nombre max</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reprise of listReprises" (click)="onSelect(reprise)">
+          <td>{{reprise.title}}</td>
+          <td>{{reprise.level}}</td>
+          <td>{{reprise.nbHorseRider}}</td>
+          <td>{{reprise.nbMaxHorseRider}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<app-show-reprise-assign (valid)="onValid($event)" [reprise]="selectedReprise" [typeReprise]="inputReprise" *ngIf="showReprise"></app-show-reprise-assign>

@@ -61,4 +61,13 @@ export class UserService {
     return this.httpClient.get<repriseResponse>("http://localhost:8080/rest/reprise/api/searchReprises/")
   }
 
+  inscriptionReprise(idReprise:number, emailUser:string){
+    let jsonToSend = {idReprise:idReprise, emailUser:emailUser}
+    return this.httpClient.post("http://localhost:8080/rest/reprise/api/inscriptionReprise/", jsonToSend)
+  }
+
+  getHorses():Observable<horseResponse>{
+    return this.httpClient.get<horseResponse>("http://localhost:8080/rest/horse/api/searchHorses/")
+  }
+
 }

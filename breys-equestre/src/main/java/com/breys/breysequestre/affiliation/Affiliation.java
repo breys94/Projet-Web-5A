@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Affiliation {
 
     private Integer id;
-    private Integer idUser;
+    private String emailUser;
     private Integer idReprise;
 
     @Id
@@ -21,13 +21,13 @@ public class Affiliation {
         this.id = id;
     }
 
-    @Column(name = "USER_ID", nullable = false)
-    public Integer getIdUser() {
-        return idUser;
+    @Column(name = "USER_EMAIL", nullable = false)
+    public String getEmailUser() {
+        return emailUser;
     }
 
-    public void setIdUser(Integer idUser) {
-        this.idUser = idUser;
+    public void setEmailUser(String emailUser) {
+        this.emailUser = emailUser;
     }
 
     @Column(name = "REPRISE_ID", nullable = false)

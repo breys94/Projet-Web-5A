@@ -21,17 +21,21 @@
 			</div>
 		  </nav>
 
-		  <br *ngIf="!showCreate && !showProfile">
-		  <br *ngIf="!showCreate && !showProfile">
-		  <br *ngIf="!showCreate && !showProfile">
-		  <br *ngIf="!showCreate && !showProfile">
+		  <br *ngIf="!showCreate && !showProfile && !showList">
+		  <br *ngIf="!showCreate && !showProfile && !showList">
+		  <br *ngIf="!showCreate && !showProfile && !showList">
+		  <br *ngIf="!showCreate && !showProfile && !showList">
 
-		  <div *ngIf="!showCreate && !showProfile" class="center-div">
+		  <div *ngIf="!showCreate && !showProfile && !showList" class="center-div">
 			<label class="label">Bienvenu sur la page des moniteurs !</label><br>			
 		  </div>
 		  
 		  <div *ngIf="showCreate" class="center-div">
 			<app-page-create-reprise></app-page-create-reprise>				
+		  </div>
+
+		  <div *ngIf="showList" class="center-div">
+			<app-show-reprise-by-monitor></app-show-reprise-by-monitor>				
 		  </div>
           
           <div *ngIf="showProfile" class="center-div">

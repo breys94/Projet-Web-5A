@@ -22,16 +22,22 @@ export class ShowRepriseComponent implements OnInit {
   pipe = new DatePipe('fr');
   beginDate;
   endDate;
+  email;
 
-  constructor() { }
+  constructor(private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.beginDate = this.pipe.transform(this.reprise.beginDate, 'longDate');
     this.endDate = this.pipe.transform(this.reprise.endDate, 'longDate');
+    this.email = this.route.snapshot.params['email']
   }
 
   inscription(){
-    console.log("inscription")
+    this.userService.inscriptionReprise(this.reprise.id, this.email).subscribe(
+      () => {
+        console.log(console.log("Succès"));
+      }, 
+    )
   }
 
   goBack(){

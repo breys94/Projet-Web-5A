@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomepageMonitorComponent implements OnInit {
 
   showCreate;
-  showAssign;
+  showList;
   showProfile;
 
   constructor() { }
@@ -18,19 +18,19 @@ export class HomepageMonitorComponent implements OnInit {
 
   loadAssignPage(){
     this.showCreate = false;
-    this.showAssign = true;
+    this.showList = true;
     this.showProfile = false;
   }
 
   loadCreatePage(){
     this.showCreate = true;
-    this.showAssign = false;
+    this.showList = false;
     this.showProfile = false;
   }
 
   loadProfile(){
     this.showCreate = false;
-    this.showAssign = false;
+    this.showList = false;
     this.showProfile = true;
   }  
 
