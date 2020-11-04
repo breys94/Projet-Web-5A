@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -48,6 +50,36 @@ public class RepriseRestController {
             listToReturn.add(mapRepriseToRepriseDTO(reprise));
         }
         return listToReturn;
+    }
+
+    @CrossOrigin
+    @GetMapping("/searchReprises24hours")
+    public List<RepriseDTO> listReprise24Hours() {
+        List<Reprise> listReprise = repriseService.findReprises();
+        List<Reprise> listReprise24Hours= new ArrayList<>();
+        for(Reprise reprise : listReprise){
+            Date date = new Date();
+            Long diff = reprise.getBeginDate().getTime() - date.getTime();
+            float res = (diff / (1000*60*60*24));
+            System.out.println(res);
+            if(res <= 1.0){
+                listReprise24Hours.add(reprise);
+            }
+        }
+        List<RepriseDTO> listToReturn = new ArrayList<>();
+        for(Reprise reprise : listReprise24Hours){
+            listToReturn.add(mapRepriseToRepriseDTO(reprise));
+        }
+        return listToReturn;
+    }
+
+    @CrossOrigin
+    @GetMapping("/searchRepriseById")
+    public RepriseDTO RepriseById(@RequestParam("id") Integer id) {
+        Reprise reprise = repriseService.findRepriseById(id);
+        System.out.println(reprise);
+        RepriseDTO repriseDTO = mapRepriseToRepriseDTO(reprise);
+        return repriseDTO;
     }
     
     @CrossOrigin
@@ -88,6 +120,26 @@ public class RepriseRestController {
             listToReturn.add(mapAffiliationToAffiliationDTO(affiliation));
         }
         return listToReturn;
+    }
+
+    @CrossOrigin
+    @GetMapping("/searchInscriptionsByUser")
+    public List<AffiliationDTO> ListInscriptionByUser(@RequestParam("emailUser") String emailUser) {
+        List<Affiliation> listAffiliation = affiliationService.findAffiliationByEmailUser(emailUser);
+        List<AffiliationDTO> listToReturn = new ArrayList<>();
+        for(Affiliation affiliation : listAffiliation){
+            listToReturn.add(mapAffiliationToAffiliationDTO(affiliation));
+        }
+        return listToReturn;
+    }
+
+
+
+    @CrossOrigin
+    @GetMapping("/deleteReprise")
+    public Integer DeleteReprise(@RequestParam("id") Integer id) {
+        repriseService.deleteReprise(id);
+        return 0;
     }
 
     private RepriseDTO mapRepriseToRepriseDTO(Reprise reprise) {

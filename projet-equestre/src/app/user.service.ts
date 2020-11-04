@@ -76,4 +76,28 @@ export class UserService {
     return this.httpClient.get<affiliationResponse>("http://localhost:8080/rest/reprise/api/searchInscriptionsByReprise/", {params:param})   
   }
 
+  deleteReprise(idReprise:number){
+    let param = new HttpParams().set("id", idReprise.toString())
+    return this.httpClient.get("http://localhost:8080/rest/reprise/api/deleteReprise/", {params:param})   
+  }
+
+  addUserToHorse(emailUser:string, idHorse:number){
+    let param = new HttpParams().set("id", idHorse.toString()).set("email", emailUser)
+    return this.httpClient.get("http://localhost:8080/rest/horse/api/addUserToHorse/", {params:param})       
+  }
+
+  getRepriseByUser(emailUser:string):Observable<affiliationResponse>{
+    let param = new HttpParams().set("emailUser", emailUser)
+    return this.httpClient.get<affiliationResponse>("http://localhost:8080/rest/reprise/api/searchInscriptionsByUser/", {params:param}) 
+  }
+
+  getRepriseById(id:number):Observable<repriseResponse>{
+    let param = new HttpParams().set("id", id.toString())
+    return this.httpClient.get<repriseResponse>("http://localhost:8080/rest/reprise/api/searchRepriseById/", {params:param}) 
+  }
+
+  getReprises24Hours():Observable<repriseResponse>{
+    return this.httpClient.get<repriseResponse>("http://localhost:8080/rest/reprise/api/searchReprises24hours/")
+  }
+
 }

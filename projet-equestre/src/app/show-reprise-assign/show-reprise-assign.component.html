@@ -5,7 +5,7 @@
 
 <app-page-create-horse *ngIf="lauchAddHorse"></app-page-create-horse>
 
-<div *ngIf="!showAddHorses && !lauchAddHorse" class="center-div">
+<div *ngIf="!showAddHorses && !lauchAddHorse && !showValidation" class="center-div">
 
     <div>
         <div *ngIf="showCancel" style="color: orange; font-size: medium;">
@@ -13,8 +13,8 @@
             <label>Vous pouvez annuler le cours <button (click)="cancelReprise()"><U>ICI</U></button></label>
         </div><br>
         <label>Quel cheval pour :</label>
-        <select id="type" class="form-control" [(ngModel)]="simpleValue">
-            <option *ngFor="let horseRider of listHorseRiders">{{ horseRider.emailUser }}</option>
+        <select  class="form-control" [(ngModel)]="selectedUser">
+            <option [style.color]="test === true ? 'green' : 'black'" *ngFor="let horseRider of listHorseRiders" value="{{ horseRider.emailUser }}">{{ horseRider.emailUser }}</option>
         </select><br>
     </div>
 
@@ -43,3 +43,5 @@
     </table>
   </div>
 </div>
+
+<app-validation-assign (valid)="onValid($event)" [user]="selectedUser" [horse]="selectedHorse" *ngIf="showValidation"></app-validation-assign>

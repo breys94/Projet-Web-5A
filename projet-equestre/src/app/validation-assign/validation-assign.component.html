@@ -1,0 +1,19 @@
+<br>
+<br>
+<br>
+<div class="card text-center" style="border-radius: 40px 40px 40px 40px;">
+    <div class="card-header">
+        <h2>Validation</h2>
+    </div>
+    <div class="card-body">
+        <label><strong>{{ user }}</strong> montera <strong>{{ horse.name }}</strong> ? </label><br>
+        <div style="text-align : center ; ">
+            <button style="margin-right: 12px;" (click)="goBack()" type="button" class="btn btn-danger" data-toggle="button" aria-pressed="false" autocomplete="off">
+                Non
+            </button>
+            <button style="margin-left: 12px;" (click)="validation()" type="button" class="btn btn-success" data-toggle="button" aria-pressed="false" autocomplete="off">
+                Oui
+            </button>
+        </div>
+    </div>
+</div>

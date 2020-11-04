@@ -1,7 +1,8 @@
-import { Component, Input, OnInit, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Inject, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import { repriseResponse } from '../response_api/repriseResponse';
 import { Router, ActivatedRoute } from  '@angular/router';
 import { UserService } from '../user.service';
+import { DOCUMENT } from '@angular/common'; 
 
 @Component({
   selector: 'app-show-reprise-assign',
@@ -16,11 +17,17 @@ export class ShowRepriseAssignComponent implements OnInit {
   showCancel;
   showAddHorses;
   lauchAddHorse;
+  showValidation;
+  simpleValue : string;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, @Inject(DOCUMENT) document) { }
 
   listHorses;
   listHorseRiders;
+  listSelectedHorses;
+
+  selectedUser;
+  selectedHorse
 
   ngOnInit(): void {
 
@@ -29,7 +36,7 @@ export class ShowRepriseAssignComponent implements OnInit {
         this.listHorses = data
         let tmpList = []
         for (let i = 0; i < this.listHorses.length; i++) {
-          if(this.listHorses[i].idCavalier === undefined) tmpList.push(this.listHorses[i])
+          if(this.listHorses[i].emailCavalier === undefined) tmpList.push(this.listHorses[i])
           this.listHorses = tmpList
         }
         if(this.listHorses.length >= 1 && this.reprise.nbHorseRider < 3){
@@ -56,11 +63,18 @@ export class ShowRepriseAssignComponent implements OnInit {
   }
 
   onSelect(horse){
-    console.log(horse)
+    if(this.selectedUser === undefined)return
+    this.showValidation = true
+    this.selectedHorse = horse
   }
 
   cancelReprise(){
-    console.log("cancel reprise")
+    this.userService.deleteReprise(this.reprise.id).subscribe()
+    alert("Cours supprimé")
+  }
+
+  onValid(valid:boolean){
+    if(valid === true) this.showValidation = false;
   }
 
 }

@@ -18,6 +18,8 @@ public interface AffiliationService {
 
     public List<Affiliation> findAffiliationByIdReprise(Integer idUser);
 
+    public List<Affiliation> findAffiliationByEmailUser(String EmailUser);
+
     public Affiliation findAffiliationById(Integer affiliationId);
     
 }

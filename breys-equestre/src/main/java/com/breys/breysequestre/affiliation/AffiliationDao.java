@@ -8,6 +8,7 @@ import java.util.List;
 public interface AffiliationDao extends JpaRepository<Affiliation, Integer> {
 
     public List<Affiliation> findAffiliationByIdReprise(Integer id);
+    public List<Affiliation> findAffiliationByEmailUser(String emailUser);
     public Affiliation findAffiliationById(Integer id);
 
 }

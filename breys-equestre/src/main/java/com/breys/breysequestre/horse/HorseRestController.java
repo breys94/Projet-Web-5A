@@ -48,6 +48,15 @@ public class HorseRestController {
         return listToReturn;
     }
 
+    @CrossOrigin
+    @GetMapping("/addUserToHorse")
+    public Integer AddUserToHorse(@RequestParam("email") String email, @RequestParam("id") Integer id) {
+        Horse horse = horseService.findHorseById(id);
+        horse.setEmailOwner(email);
+        horseService.saveHorse(horse);
+        return 0;
+    }
+
     private HorseDTO mapHorseToHorseDTO(Horse horse) {
         ModelMapper mapper = new ModelMapper();
         HorseDTO horseDTO = mapper.map(horse, HorseDTO.class);

@@ -44,6 +44,11 @@ public class AffiliationServiceImpl implements AffiliationService {
     }
 
     @Override
+    public List<Affiliation> findAffiliationByEmailUser(String emailUser) {
+        return affiliationDao.findAffiliationByEmailUser(emailUser);
+    }
+
+    @Override
     public Affiliation findAffiliationById(Integer affiliationId) {
         return affiliationDao.findAffiliationById(affiliationId);
     }

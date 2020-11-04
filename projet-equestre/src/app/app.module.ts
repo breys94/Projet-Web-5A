@@ -32,6 +32,8 @@ import { PageSearchRepriseComponent } from './page-search-reprise/page-search-re
 import { ShowRepriseComponent } from './show-reprise/show-reprise.component';
 import { ShowRepriseByMonitorComponent } from './show-reprise-by-monitor/show-reprise-by-monitor.component';
 import { ShowRepriseAssignComponent } from './show-reprise-assign/show-reprise-assign.component';
+import { ValidationAssignComponent } from './validation-assign/validation-assign.component';
+import { ShowParticipateComponent } from './show-participate/show-participate.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import { ShowRepriseAssignComponent } from './show-reprise-assign/show-reprise-a
     ShowRepriseComponent,
     ShowRepriseByMonitorComponent,
     ShowRepriseAssignComponent,
+    ValidationAssignComponent,
+    ShowParticipateComponent,
   ],
   imports: [
     BrowserModule,

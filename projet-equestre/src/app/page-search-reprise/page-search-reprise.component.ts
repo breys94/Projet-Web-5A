@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { cpuUsage } from 'process';
 import { UserService } from '../user.service';
 
 @Component({

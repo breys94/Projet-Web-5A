@@ -1,7 +1,7 @@
 <br>
 
 <div *ngIf="!showReprise">
-  <div class="scroll" style="border-radius: 40px 40px 40px 40px;">
+  <div class="scroll center-div" style="border-radius: 40px 40px 40px 40px;">
     <table class="table table-hover">
       <thead>
         <tr>
@@ -9,6 +9,7 @@
           <th scope="col">Niveau du cours</th>
           <th scope="col">Nombre d'inscrits</th>
           <th scope="col">Nombre max</th>
+          <th scope="col">Programmation</th>
         </tr>
       </thead>
       <tbody>
@@ -17,6 +18,7 @@
           <td>{{reprise.level}}</td>
           <td>{{reprise.nbHorseRider}}</td>
           <td>{{reprise.nbMaxHorseRider}}</td>
+          <td>{{reprise.beginDate}} au {{reprise.endDate}}</td>
         </tr>
       </tbody>
     </table>
