@@ -2,7 +2,7 @@ package com.breys.breysequestre.horse;
 
 public class HorseDTO implements Comparable<HorseDTO> {
     private Integer id;
-    private Integer idOwner;
+    private String emailOwner;
     private Integer age;
     private String name;
     private String sexe;
@@ -19,12 +19,12 @@ public class HorseDTO implements Comparable<HorseDTO> {
         this.id = id;
     }
 
-    public Integer getIdOwner() {
-        return idOwner;
+    public String getEmailOwner() {
+        return emailOwner;
     }
 
-    public void setIdOwner(Integer idOwner) {
-        this.idOwner = idOwner;
+    public void setEmailOwner(String emailOwner) {
+        this.emailOwner = emailOwner;
     }
 
     public Integer getAge() {

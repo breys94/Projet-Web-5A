@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { userResponse } from './response_api/userResponse';
 import { horseResponse } from './response_api/horseResponse';
 import { repriseResponse } from './response_api/repriseResponse';
+import { affiliationResponse } from './response_api/affiliationResponse';
 import { Observable } from 'rxjs';
 
 
@@ -68,6 +69,11 @@ export class UserService {
 
   getHorses():Observable<horseResponse>{
     return this.httpClient.get<horseResponse>("http://localhost:8080/rest/horse/api/searchHorses/")
+  }
+
+  getHorseRiderByReprise(idReprise:number):Observable<affiliationResponse>{
+    let param = new HttpParams().set("id", idReprise.toString())
+    return this.httpClient.get<affiliationResponse>("http://localhost:8080/rest/reprise/api/searchInscriptionsByReprise/", {params:param})   
   }
 
 }

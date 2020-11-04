@@ -14,6 +14,9 @@ export class HomepageMonitorComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.showCreate = false;
+    this.showList = false;
+    this.showProfile = false;
   }
 
   loadAssignPage(){

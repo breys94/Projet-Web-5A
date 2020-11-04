@@ -1,5 +1,45 @@
-<br>
-<div *ngIf="showAddHorses">
-    <label>Il n'y a pas de chevaux configurés</label>
-    <label>Cliquer ici pour en ajouter</label>
+<div *ngIf="showAddHorses" class="center-div">
+    <label class="label">Il n'y a pas de chevaux configurés.</label><br>
+    <button (click)="launchAddHorse()"><U>Cliquer ici pour en ajouter</U></button>		
+</div>
+
+<app-page-create-horse *ngIf="lauchAddHorse"></app-page-create-horse>
+
+<div *ngIf="!showAddHorses && !lauchAddHorse" class="center-div">
+
+    <div>
+        <div *ngIf="showCancel" style="color: orange; font-size: medium;">
+            <label>Il n'y a peu de gens inscrits à ce cours. </label>
+            <label>Vous pouvez annuler le cours <button (click)="cancelReprise()"><U>ICI</U></button></label>
+        </div><br>
+        <label>Quel cheval pour :</label>
+        <select id="type" class="form-control" [(ngModel)]="simpleValue">
+            <option *ngFor="let horseRider of listHorseRiders">{{ horseRider.emailUser }}</option>
+        </select><br>
+    </div>
+
+    <div class="scroll" style="border-radius: 40px 40px 40px 40px;">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Nom</th>
+          <th scope="col">Age</th>
+          <th scope="col">Sexe</th>
+          <th scope="col">Poids</th>
+          <th scope="col">Taille</th>
+          <th scope="col">Victoires / Défaites</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let horse of listHorses" (click)="onSelect(horse)">
+          <td>{{horse.name}}</td>
+          <td>{{horse.age}}</td>
+          <td>{{horse.sexe}}</td>
+          <td>{{horse.weight}}</td>
+          <td>{{horse.height}}</td>
+          <td>{{horse.nbWins}} / {{horse.nbLoses}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

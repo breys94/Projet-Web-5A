@@ -79,6 +79,17 @@ public class RepriseRestController {
         return listToReturn;
     }
 
+    @CrossOrigin
+    @GetMapping("/searchInscriptionsByReprise")
+    public List<AffiliationDTO> listInscriptionByReprise(@RequestParam("id") Integer id) {
+        List<Affiliation> listAffiliation = affiliationService.findAffiliationByIdReprise(id);
+        List<AffiliationDTO> listToReturn = new ArrayList<>();
+        for(Affiliation affiliation : listAffiliation){
+            listToReturn.add(mapAffiliationToAffiliationDTO(affiliation));
+        }
+        return listToReturn;
+    }
+
     private RepriseDTO mapRepriseToRepriseDTO(Reprise reprise) {
         ModelMapper mapper = new ModelMapper();
         RepriseDTO repriseDTO = mapper.map(reprise, RepriseDTO.class);

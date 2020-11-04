@@ -35,6 +35,7 @@ export class ShowRepriseComponent implements OnInit {
   inscription(){
     this.userService.inscriptionReprise(this.reprise.id, this.email).subscribe(
       () => {
+        alert("Inscription avec succès")
         console.log(console.log("Succès"));
       }, 
     )

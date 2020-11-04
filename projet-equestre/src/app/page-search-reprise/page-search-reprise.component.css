@@ -6,7 +6,7 @@ html, body {
 .center-div
 {
   margin: 0 auto;
-  width: 600px;
+  width: 700px;
 }
 
 .label {
@@ -19,6 +19,8 @@ li {
 }
 
 .scroll {
+  margin: 0 auto;
+  width: 700px;
   background-color: white;
   top: 20px;
   bottom: 20px;

@@ -1,6 +1,6 @@
 export interface horseResponse {
     id:number
-    idCavalier:number
+    emailCavalier:string
     sexe:string
     name:string
     age:string

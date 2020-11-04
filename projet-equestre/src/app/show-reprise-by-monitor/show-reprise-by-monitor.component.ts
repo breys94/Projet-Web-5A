@@ -16,8 +16,6 @@ export class ShowRepriseByMonitorComponent implements OnInit {
   selectedReprise;
   email;
 
-  inputReprise;
-
   constructor(private userService:UserService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -31,21 +29,10 @@ export class ShowRepriseByMonitorComponent implements OnInit {
         this.listReprises = this.listReprisesInit
       }
     );
-
-    this.userService.getHorses().subscribe(
-      data => {
-        this.listHorses = data
-      }
-    );
   }
 
   onSelect(reprise){
     this.selectedReprise=reprise
-    //console.log(this.listHorses.length)
-    //console.log(reprise.nbHorseRider)
-    if(this.listHorses.length >= 1 && reprise.nbHorseRider >= 3)this.inputReprise = "repriseOk"
-    if(this.listHorses.length >= 1 && reprise.nbHorseRider < 3)this.inputReprise = "repriseCancel"
-    if(this.listHorses.length === 0)this.inputReprise = "repriseNeedsHorses"
     this.showReprise = true;
   }
 
