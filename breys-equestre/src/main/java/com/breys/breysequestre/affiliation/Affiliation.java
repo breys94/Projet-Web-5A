@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Affiliation {
 
     private Integer id;
+    private Integer idHorse;
     private String emailUser;
     private Integer idReprise;
 
