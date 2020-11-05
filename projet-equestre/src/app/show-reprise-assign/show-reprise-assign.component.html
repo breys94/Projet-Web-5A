@@ -14,7 +14,7 @@
         </div><br>
         <label>Quel cheval pour :</label>
         <select  class="form-control" [(ngModel)]="selectedUser">
-            <option [style.color]="test === true ? 'green' : 'black'" *ngFor="let horseRider of listHorseRiders" value="{{ horseRider.emailUser }}">{{ horseRider.emailUser }}</option>
+            <option *ngFor="let horseRider of listHorseRiders" value="{{ horseRider.emailUser }}">{{ horseRider.emailUser }}</option>
         </select><br>
     </div>
 

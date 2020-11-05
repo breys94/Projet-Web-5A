@@ -100,4 +100,9 @@ export class UserService {
     return this.httpClient.get<repriseResponse>("http://localhost:8080/rest/reprise/api/searchReprises24hours/")
   }
 
+  getHorseByEmailUser(emailUser:string):Observable<horseResponse>{
+    let param = new HttpParams().set("emailUser", emailUser)
+    return this.httpClient.get<horseResponse>("http://localhost:8080/rest/horse/api/searchHorsesByEmailUser/", {params:param})
+  }
+
 }

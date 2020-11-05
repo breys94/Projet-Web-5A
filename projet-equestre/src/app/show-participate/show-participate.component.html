@@ -6,14 +6,17 @@
           <th scope="col">Email Moniteur</th>
           <th scope="col">Niveau du cours</th>
           <th scope="col">Nombre de personne max</th>
+          <th scope="col">Votre cheval</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let reprise of listReprisesUser">
+        <tr *ngFor="let reprise of listReprisesUser" click="showHorse()">
           <td>{{reprise.title}}</td>
           <td>{{reprise.emailMonitor}}</td>
           <td>{{reprise.level}}</td>
           <td>{{reprise.nbMaxHorseRider}}</td>
+          <td *ngIf="noHorse">      / </td>
+          <td *ngIf="!noHorse">{{horse.name}}</td>
         </tr>
       </tbody>
     </table>

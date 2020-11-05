@@ -34,6 +34,7 @@ export class HomepageSuperuserComponent implements OnInit {
 
   onValid(valid:boolean){
     if(valid === true)this.userService.getUsersRole("ADMIN").subscribe(data => this.listUsers = data);
+    this.ngOnInit()
   }
 
 }

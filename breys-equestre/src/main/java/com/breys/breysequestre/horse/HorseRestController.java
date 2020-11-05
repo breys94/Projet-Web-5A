@@ -1,5 +1,6 @@
 package com.breys.breysequestre.horse;
 
+import com.breys.breysequestre.User.UserDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,6 +47,19 @@ public class HorseRestController {
             listToReturn.add(mapHorseToHorseDTO(horse));
         }
         return listToReturn;
+    }
+
+    @CrossOrigin
+    @GetMapping("/searchHorsesByEmailUser")
+    public  ResponseEntity<HorseDTO> GetHorseByEmailUser(@RequestParam("emailUser") String emailUser) {
+        List<Horse> listHorse = horseService.findHorses();
+        boolean findHorse = false;
+        for(Horse horse : listHorse){
+            if(horse.getEmailOwner().equals(emailUser)){
+                return new ResponseEntity<HorseDTO>(mapHorseToHorseDTO(horse), HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<HorseDTO>(HttpStatus.NO_CONTENT);
     }
 
     @CrossOrigin

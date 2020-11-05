@@ -13,6 +13,9 @@ export class ShowParticipateComponent implements OnInit {
   email;
   listReprises;
   listReprisesUser = [];
+  horse;
+
+  noHorse = true;
 
   constructor(private userService:UserService, private route: ActivatedRoute) { }
 
@@ -30,6 +33,21 @@ export class ShowParticipateComponent implements OnInit {
         }
       }
     )
+    this.userService.getHorseByEmailUser(this.email).subscribe(
+      (data) => {
+        this.noHorse = false
+        this.horse = data
+      },
+      (res) => {
+        if (res.status === 500){
+          this.noHorse = true;
+        }
+      }
+    )
+  }
+
+  showHorse(){
+    
   }
 
 }

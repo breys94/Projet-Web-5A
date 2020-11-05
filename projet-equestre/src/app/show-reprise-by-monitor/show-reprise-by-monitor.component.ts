@@ -51,6 +51,7 @@ export class ShowRepriseByMonitorComponent implements OnInit {
 
   onValid(valid:boolean){
     if(valid === true) this.showReprise = false;
+    this.ngOnInit()
   }
 
 }

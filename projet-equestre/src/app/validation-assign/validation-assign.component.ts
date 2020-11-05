@@ -25,6 +25,7 @@ export class ValidationAssignComponent implements OnInit {
 
   validation(){
     this.userService.addUserToHorse(this.user, this.horse.id).subscribe()
+    alert("Assignation validée")
     this.goBack()
   }
 

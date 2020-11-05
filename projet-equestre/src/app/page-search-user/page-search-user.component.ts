@@ -42,6 +42,7 @@ export class PageSearchUserComponent implements OnInit {
 
   onValid(valid:boolean){
     if(valid === true) this.showUser = false;
+    this.ngOnInit()
   }
 
 }
