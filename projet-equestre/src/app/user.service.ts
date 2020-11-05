@@ -63,7 +63,7 @@ export class UserService {
   }
 
   inscriptionReprise(idReprise:number, emailUser:string){
-    let jsonToSend = {idReprise:idReprise, emailUser:emailUser}
+    let jsonToSend = {idReprise:idReprise, idHorse:null,emailUser:emailUser}
     return this.httpClient.post("http://localhost:8080/rest/reprise/api/inscriptionReprise/", jsonToSend)
   }
 

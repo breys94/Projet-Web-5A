@@ -6,6 +6,7 @@ public class AffiliationDTO implements Comparable<AffiliationDTO> {
     private Integer id;
     private String emailUser;
     private Integer idReprise;
+    private Integer idHorse;
 
     public Integer getId() {
         return id;
@@ -29,6 +30,14 @@ public class AffiliationDTO implements Comparable<AffiliationDTO> {
 
     public void setIdReprise(Integer idReprise) {
         this.idReprise = idReprise;
+    }
+
+    public Integer getIdHorse() {
+        return idHorse;
+    }
+
+    public void setIdHorse(Integer idHorse) {
+        this.idHorse = idHorse;
     }
 
     @Override

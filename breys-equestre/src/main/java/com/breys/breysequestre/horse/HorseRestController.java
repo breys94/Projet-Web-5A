@@ -1,6 +1,8 @@
 package com.breys.breysequestre.horse;
 
 import com.breys.breysequestre.User.UserDTO;
+import com.breys.breysequestre.affiliation.Affiliation;
+import com.breys.breysequestre.affiliation.AffiliationServiceImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,9 @@ public class HorseRestController {
     private HorseServiceImpl horseService;
 
     private Horse horse;
+
+    @Autowired
+    private AffiliationServiceImpl affiliationService;
 
     @CrossOrigin
     @PostMapping("/addHorse")

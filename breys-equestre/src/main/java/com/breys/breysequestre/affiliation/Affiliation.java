@@ -40,4 +40,13 @@ public class Affiliation {
         this.idReprise = idReprise;
     }
 
+    @Column(name = "HORSE_ID", nullable = true)
+    public Integer getIdHorse() {
+        return idHorse;
+    }
+
+    public void setIdHorse(Integer idHorse) {
+        this.idHorse = idHorse;
+    }
+
 }

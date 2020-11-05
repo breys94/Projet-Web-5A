@@ -12,9 +12,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping("/rest/reprise/api/")
@@ -39,6 +41,34 @@ public class RepriseRestController {
             return new ResponseEntity<RepriseDTO>(repriseDTO, HttpStatus.CREATED);
         }
         return new ResponseEntity<RepriseDTO>(HttpStatus.NOT_MODIFIED);
+    }
+
+    @CrossOrigin
+    @PostMapping("/addRepriseRecur")
+    public Integer CreateRepriseRecur(@RequestBody RepriseDTO repriseDTORequest, @RequestParam("nbRecurs") Integer nbRecurs, @RequestParam("typeRecurs") String typeRecurs){
+        List<String> datesToReturn = new ArrayList<>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
+        Long beginDateTs = repriseDTORequest.getBeginDate().getTime();
+        Long endDateTs = repriseDTORequest.getEndDate().getTime();
+        if(typeRecurs.equals("day")){
+            for(int i = 1; i <= nbRecurs; i++){
+                Long beginDateTsLater = beginDateTs + (i*1000*60*60*24);
+                Long endDateTsLater = endDateTs + (i*1000*60*60*24);
+                repriseDTORequest.setBeginDate(new Date(beginDateTsLater));
+                repriseDTORequest.setEndDate(new Date(endDateTsLater));
+                repriseService.saveReprise(mapRepriseDTOToReprise(repriseDTORequest));
+            }
+        }
+        else if(typeRecurs.equals("week")){
+            for(int i=0; i<nbRecurs; i++){
+                Long beginDateTsLater = beginDateTs + (i*7*1000*60*60*24);
+                Long endDateTsLater = endDateTs + (i*7*1000*60*60*24);
+                repriseDTORequest.setBeginDate(new Date(beginDateTsLater));
+                repriseDTORequest.setEndDate(new Date(endDateTsLater));
+                repriseService.saveReprise(mapRepriseDTOToReprise(repriseDTORequest));
+            }
+        }
+        return 0;
     }
 
     @CrossOrigin
