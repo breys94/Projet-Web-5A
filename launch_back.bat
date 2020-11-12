@@ -1,1 +1,1 @@
-java -Xmx1024M -Xms1024M -jar C:\Users\breys.SAPARIS\Documents\cours\5A\WEB\Projet-Web-5A\jar\breys-equestre.war
+java -Xmx1024M -Xms1024M -jar jar\breys-equestre.war
