@@ -110,10 +110,6 @@ public class UserRestController {
             return new ResponseEntity<Integer>(1, HttpStatus.OK);
         }
 
-        if(user.getIsLog()){
-            return new ResponseEntity<Integer>(0, HttpStatus.OK);
-        }
-
         if (BCrypt.checkpw(infoUser.getPassword(), user.getPassword())){
             user.setIsLog(true);
             user.setNbBlock(0);
