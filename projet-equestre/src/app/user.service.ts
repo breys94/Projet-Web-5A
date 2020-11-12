@@ -105,4 +105,10 @@ export class UserService {
     return this.httpClient.get<horseResponse>("http://localhost:8080/rest/horse/api/searchHorsesByEmailUser/", {params:param})
   }
 
+  addRepriseRecur(nbRecurs:string, typeRecurs:string, emailMonitor:string, title:string, level:string, beginDate:string, endDate:string, nbMaxHorseRider:number){
+    let param = new HttpParams().set("nbRecurs", nbRecurs).set("typeRecurs",typeRecurs)
+    let jsonToSend = {"emailMonitor":emailMonitor,"beginDate":beginDate, "endDate":endDate, "nbHorseRider":0, "nbMaxHorseRider":nbMaxHorseRider, "level":level, "title":title}
+    return this.httpClient.post("http://localhost:8080/rest/reprise/api/addRepriseRecur/", jsonToSend, {params:param})
+  }
+
 }

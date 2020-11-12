@@ -46,8 +46,6 @@ public class RepriseRestController {
     @CrossOrigin
     @PostMapping("/addRepriseRecur")
     public Integer CreateRepriseRecur(@RequestBody RepriseDTO repriseDTORequest, @RequestParam("nbRecurs") Integer nbRecurs, @RequestParam("typeRecurs") String typeRecurs){
-        List<String> datesToReturn = new ArrayList<>();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
         Long beginDateTs = repriseDTORequest.getBeginDate().getTime();
         Long endDateTs = repriseDTORequest.getEndDate().getTime();
         if(typeRecurs.equals("day")){
