@@ -1,6 +1,8 @@
 # Projet-Web-5A
   
-- Les informations sur les jeu de données se trouvent dans le fichier breys-equestre\src\main\resources\data.sql  
+- Les informations sur les jeu de données se trouvent dans le fichier breys-equestre\src\main\resources\data.sql
+
+- Pour recharger les données, il faut relancer launch_back.bat
   
 1) Se placer dans le répertoire cloné
 2) Lancer launch_back.bat
