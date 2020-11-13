@@ -1,4 +1,6 @@
 # Projet-Web-5A
+
+- J'ai fait le projet seul
   
 - Les informations sur les jeu de données se trouvent dans le fichier breys-equestre\src\main\resources\data.sql
 
